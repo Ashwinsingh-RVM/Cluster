@@ -255,7 +255,7 @@ table.st tbody tr:hover{background:#f9fafb}
 .inv-step{background:var(--bg2);padding:16px 14px;text-align:center;position:relative}
 .inv-step:not(:last-child)::after{content:'→';position:absolute;right:-8px;top:50%;
   transform:translateY(-50%);font-size:14px;color:var(--ink4);z-index:1}
-.inv-step-v{font-size:24px;font-weight:300;color:var(--ink);letter-spacing:-.5px}
+.inv-step-v{font-size:24px;font-weight:300;color:var(--ink);letter-spacing:-.5px} 
 .inv-step-l{font-size:10px;color:var(--ink3);margin-top:5px;font-weight:500}
 .inv-step-pct{font-size:10px;font-weight:600;margin-top:3px}
 /* Reconciliation grid */
