@@ -544,10 +544,17 @@ table.dt tbody tr:last-child td{border-bottom:none}
         <div class="sec-title">By Collection Point Type</div>
         <div style="display:flex;flex-direction:column;gap:8px" id="ctype-cards"></div>
       </div>
-      <!-- Right: Material blocks -->
+      <!-- Right: Material blocks + material mix pie filling gap below -->
       <div>
-        <div class="sec-title">Material Collection — Click to drill by panchayat</div>
+        <div class="sec-title">Material Collection by Type — Click block to drill</div>
         <div class="mat-grid" id="mat-grid"></div>
+        <div style="margin-top:12px;padding:14px 16px;background:var(--white);border:1px solid var(--bdr);border-radius:8px">
+          <div class="sec-title" style="margin-bottom:10px">Material Mix — by Volume</div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:14px;align-items:center">
+            <div style="height:140px"><canvas id="ch-mat-type"></canvas></div>
+            <div id="mat-type-legend" style="display:flex;flex-direction:column;gap:4px"></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -558,16 +565,16 @@ table.dt tbody tr:last-child td{border-bottom:none}
       <div class="card">
         <div class="card-h">
           <div>
-            <div class="card-ht">Block-wise Collection</div>
-            <div class="card-hs">CPC cluster rollup · click to view on map</div>
+            <div class="card-ht">Taluka-wise Collection</div>
+            <div class="card-hs">Collection by taluka — panchayat count · CPs · units · weight</div>
           </div>
         </div>
         <table class="dt" style="font-size:11px">
           <thead><tr>
-            <th>CPC / Block</th><th>Type</th>
-            <th class="tn">CPs</th><th class="tn">Units</th><th class="tn">Wt MT</th>
-            <th class="tn">Inward</th><th class="tn">Outbound</th><th class="tn">Pending</th>
-            <th class="tn">Fill%</th><th class="tn">Up%</th><th>Status</th>
+            <th>Taluka</th>
+            <th class="tn">Panchayats</th><th class="tn">CPs</th><th class="tn">Units</th>
+            <th class="tn">Wt MT</th><th class="tn">RVMs</th><th class="tn">D2D</th>
+            <th class="tn">HoReCa</th><th class="tn">Fill%</th><th class="tn">Up%</th><th>Status</th>
           </tr></thead>
           <tbody id="block-tbody"></tbody>
         </table>
@@ -625,7 +632,7 @@ table.dt tbody tr:last-child td{border-bottom:none}
   <div class="p2-left">
     <div class="pgh" style="flex-shrink:0;padding:12px 14px">
       <div><div class="pgh-title" style="font-size:14px">CPC Clusters</div>
-      <div style="font-size:10px;color:var(--ink3);margin-top:2px">300 RVMs · 80 vehicles</div></div>
+      <div style="font-size:10px;color:var(--ink3);margin-top:2px">446 CPs · 80 vehicles</div></div>
     </div>
     <div class="sb-sec">
       <div class="sb-lbl">Select Cluster</div>
@@ -840,22 +847,22 @@ const MAT=[
 ];
 
 const PANCHS=[
-  {n:'Aldona',    t:'Bardez',  rvms:15,rc:5, d2d:6, hora:6, units:2180,mt:76, fill:84,up:97, cpc:'GOA-CPC-001',mat:{pet:32,gls:18,hpe:14,mlp:6,alm:4,tp:2}},
-  {n:'Anjuna',    t:'Bardez',  rvms:14,rc:4, d2d:6, hora:7, units:2640,mt:92, fill:76,up:95, cpc:'GOA-CPC-001',mat:{pet:38,gls:22,hpe:18,mlp:8,alm:4,tp:2}},
-  {n:'Calangute', t:'Bardez',  rvms:20,rc:5, d2d:7, hora:7, units:3120,mt:109,fill:70,up:82, cpc:'GOA-CPC-001',mat:{pet:46,gls:28,hpe:20,mlp:10,alm:4,tp:2}},
-  {n:'Siolim',    t:'Bardez',  rvms:11,rc:4, d2d:5, hora:5, units:1840,mt:64, fill:74,up:97, cpc:'GOA-CPC-001',mat:{pet:26,gls:18,hpe:12,mlp:4,alm:2,tp:2}},
-  {n:'Mapusa',    t:'Bardez',  rvms:22,rc:6, d2d:8, hora:8, units:3920,mt:137,fill:88,up:99, cpc:'GOA-CPC-001',mat:{pet:56,gls:36,hpe:26,mlp:10,alm:6,tp:4}},
-  {n:'Panaji',    t:'Tiswadi', rvms:17,rc:5, d2d:7, hora:7, units:2840,mt:99, fill:80,up:93, cpc:'GOA-CPC-003',mat:{pet:40,gls:22,hpe:18,mlp:10,alm:6,tp:4}},
-  {n:'Dona Paula',t:'Tiswadi', rvms:11,rc:4, d2d:5, hora:5, units:1680,mt:59, fill:65,up:64, cpc:'GOA-CPC-003',mat:{pet:24,gls:14,hpe:12,mlp:4,alm:2,tp:4}},
-  {n:'Taleigao',  t:'Tiswadi', rvms:9, rc:3, d2d:5, hora:6, units:1420,mt:50, fill:72,up:96, cpc:'GOA-CPC-003',mat:{pet:20,gls:12,hpe:10,mlp:4,alm:2,tp:2}},
-  {n:'Ponda',     t:'Ponda',   rvms:14,rc:4, d2d:6, hora:6, units:2580,mt:90, fill:68,up:96, cpc:'GOA-CPC-003',mat:{pet:36,gls:20,hpe:16,mlp:8,alm:4,tp:6}},
-  {n:'Margao',    t:'Salcete', rvms:26,rc:9, d2d:12,hora:10,units:6120,mt:214,fill:81,up:98, cpc:'GOA-CPC-002',mat:{pet:88,gls:52,hpe:38,mlp:20,alm:10,tp:6}},
-  {n:'Colva',     t:'Salcete', rvms:9, rc:3, d2d:5, hora:6, units:1740,mt:61, fill:73,up:100,cpc:'GOA-CPC-002',mat:{pet:26,gls:14,hpe:10,mlp:6,alm:2,tp:4}},
-  {n:'Fatorda',   t:'Salcete', rvms:14,rc:4, d2d:6, hora:6, units:2360,mt:83, fill:78,up:97, cpc:'GOA-CPC-002',mat:{pet:34,gls:20,hpe:14,mlp:8,alm:4,tp:4}},
-  {n:'Vasco',     t:'Mormugao',rvms:20,rc:5, d2d:8, hora:7, units:4720,mt:165,fill:88,up:99, cpc:'GOA-WH-002',mat:{pet:68,gls:0, hpe:42,mlp:28,alm:14,tp:12}},
-  {n:'Dabolim',   t:'Mormugao',rvms:12,rc:4, d2d:6, hora:5, units:1880,mt:66, fill:74,up:94, cpc:'GOA-WH-002',mat:{pet:28,gls:0, hpe:18,mlp:12,alm:4,tp:4}},
-  {n:'Canacona',  t:'Canacona',rvms:9, rc:3, d2d:6, hora:6, units:1480,mt:52, fill:59,up:100,cpc:'GOA-CPC-002',mat:{pet:22,gls:12,hpe:8, mlp:6,alm:2,tp:2}},
-  {n:'Bicholim',  t:'Bicholim',rvms:15,rc:4, d2d:6, hora:5, units:2040,mt:71, fill:72,up:95, cpc:'GOA-WH-001',mat:{pet:30,gls:16,hpe:12,mlp:6,alm:4,tp:4}},
+  {n:'Aldona',              t:'Bardez',  rvms:15,rc:5, d2d:6, hora:6, units:2180,mt:76, fill:84,up:97, cpc:'GOA-CPC-001',mat:{pet:32,gls:18,hpe:14,mlp:6,alm:4,tp:2}},
+  {n:'Anjuna',              t:'Bardez',  rvms:14,rc:4, d2d:6, hora:7, units:2640,mt:92, fill:76,up:95, cpc:'GOA-CPC-001',mat:{pet:38,gls:22,hpe:18,mlp:8,alm:4,tp:2}},
+  {n:'Calangute',           t:'Bardez',  rvms:20,rc:5, d2d:7, hora:7, units:3120,mt:109,fill:70,up:82, cpc:'GOA-CPC-001',mat:{pet:46,gls:28,hpe:20,mlp:10,alm:4,tp:2}},
+  {n:'Siolim-Marna',        t:'Bardez',  rvms:11,rc:4, d2d:5, hora:5, units:1840,mt:64, fill:74,up:97, cpc:'GOA-CPC-001',mat:{pet:26,gls:18,hpe:12,mlp:4,alm:2,tp:2}},
+  {n:'Mapusa',              t:'Bardez',  rvms:22,rc:6, d2d:8, hora:8, units:3920,mt:137,fill:88,up:99, cpc:'GOA-CPC-001',mat:{pet:56,gls:36,hpe:26,mlp:10,alm:6,tp:4}},
+  {n:'Taleigao',            t:'Tiswadi', rvms:17,rc:5, d2d:7, hora:7, units:2840,mt:99, fill:80,up:93, cpc:'GOA-CPC-003',mat:{pet:40,gls:22,hpe:18,mlp:10,alm:6,tp:4}},
+  {n:'St. Cruz',            t:'Tiswadi', rvms:11,rc:4, d2d:5, hora:5, units:1680,mt:59, fill:65,up:64, cpc:'GOA-CPC-003',mat:{pet:24,gls:14,hpe:12,mlp:4,alm:2,tp:4}},
+  {n:'Merces',              t:'Tiswadi', rvms:9, rc:3, d2d:5, hora:6, units:1420,mt:50, fill:72,up:96, cpc:'GOA-CPC-003',mat:{pet:20,gls:12,hpe:10,mlp:4,alm:2,tp:2}},
+  {n:'Bandora',             t:'Ponda',   rvms:14,rc:4, d2d:6, hora:6, units:2580,mt:90, fill:68,up:96, cpc:'GOA-CPC-003',mat:{pet:36,gls:20,hpe:16,mlp:8,alm:4,tp:6}},
+  {n:'Colva',               t:'Salcete', rvms:26,rc:9, d2d:12,hora:10,units:6120,mt:214,fill:81,up:98, cpc:'GOA-CPC-002',mat:{pet:88,gls:52,hpe:38,mlp:20,alm:10,tp:6}},
+  {n:'Fatorda',             t:'Salcete', rvms:9, rc:3, d2d:5, hora:6, units:1740,mt:61, fill:73,up:100,cpc:'GOA-CPC-002',mat:{pet:26,gls:14,hpe:10,mlp:6,alm:2,tp:4}},
+  {n:'Benaulim',            t:'Salcete', rvms:14,rc:4, d2d:6, hora:6, units:2360,mt:83, fill:78,up:97, cpc:'GOA-CPC-002',mat:{pet:34,gls:20,hpe:14,mlp:8,alm:4,tp:4}},
+  {n:'Verna',               t:'Mormugao',rvms:20,rc:5, d2d:8, hora:7, units:4720,mt:165,fill:88,up:99, cpc:'GOA-WH-002',mat:{pet:68,gls:0, hpe:42,mlp:28,alm:14,tp:12}},
+  {n:'Sancoale',            t:'Mormugao',rvms:12,rc:4, d2d:6, hora:5, units:1880,mt:66, fill:74,up:94, cpc:'GOA-WH-002',mat:{pet:28,gls:0, hpe:18,mlp:12,alm:4,tp:4}},
+  {n:'Agonda',              t:'Canacona',rvms:9, rc:3, d2d:6, hora:6, units:1480,mt:52, fill:59,up:100,cpc:'GOA-CPC-002',mat:{pet:22,gls:12,hpe:8, mlp:6,alm:2,tp:2}},
+  {n:'Latambarcem',         t:'Bicholim',rvms:15,rc:4, d2d:6, hora:5, units:2040,mt:71, fill:72,up:95, cpc:'GOA-WH-001',mat:{pet:30,gls:16,hpe:12,mlp:6,alm:4,tp:4}},
 ];
 const CPCS=[
   {id:'GOA-CPC-001',name:'Sagar Industries',type:'CPC',taluka:'Bardez',
@@ -886,7 +893,7 @@ const CPCS=[
      {id:'TRK-M19',driver:'Rajesh Shet', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
      {id:'TRK-M20',driver:'Vinod Salvi', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
    ]},
-  {id:'GOA-CPC-002',name:'M/s Goa Bottle Supplier',type:'MRF',taluka:'Salcete',
+  {id:'GOA-CPC-002',name:'M/s Goa Bottle Supplier',type:'CPC',taluka:'Salcete',
    lat:15.2832,lng:73.9768,col:'#22c55e',
    veh:{total:25,ontrip:18,atcpc:7,util:72},
    pending_dispatch:228,units_collected:13890,inward:412,yield:89.6,dock:92,cap:1200,
@@ -919,7 +926,7 @@ const CPCS=[
      {id:'TRK-S24',driver:'Santosh P.',  cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
      {id:'TRK-S25',driver:'Pankaj Jdh.', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
    ]},
-  {id:'GOA-CPC-003',name:'Vilas Enterprise',type:'Retearn',taluka:'Tiswadi',
+  {id:'GOA-CPC-003',name:'Vilas Enterprise',type:'CPC',taluka:'Tiswadi',
    lat:15.4989,lng:73.8278,col:'#f59e0b',
    veh:{total:15,ontrip:10,atcpc:5,util:67},
    pending_dispatch:104,units_collected:8640,inward:186,yield:86.2,dock:97,cap:200,
@@ -960,7 +967,7 @@ const CPCS=[
      {id:'TRK-W09',driver:'Xavier D.',   cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
      {id:'TRK-W10',driver:'Yogesh Jdh.', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
    ]},
-  {id:'GOA-WH-002',name:'Durga Devi Enterprise',type:'Transit',taluka:'Mormugao',
+  {id:'GOA-WH-002',name:'Durga Devi Enterprise',type:'CPC',taluka:'Mormugao',
    lat:15.3458,lng:73.9318,col:'#f97316',
    veh:{total:10,ontrip:6,atcpc:4,util:60},
    pending_dispatch:22,units_collected:3890,inward:42,yield:85.8,dock:94,cap:2000,
@@ -1162,6 +1169,31 @@ function initP1Charts(){
     <span style="flex:1;color:var(--ink2)">${t.l}</span>
     <span style="font-family:'DM Mono',monospace;font-weight:500">${t.v}</span>
   </div>`).join('');
+  // Material collection by type pie
+  const matPieEl=document.getElementById('ch-mat-type');
+  if(matPieEl&&!matPieEl._chart){
+    matPieEl._chart=new Chart(matPieEl.getContext('2d'),{
+      type:'doughnut',
+      data:{
+        labels:MAT.map(function(m){return m.name;}),
+        datasets:[{
+          data:MAT.map(function(m){return m.vol;}),
+          backgroundColor:MAT.map(function(m){return m.col;}),
+          borderWidth:2,borderColor:'#fff',hoverOffset:5
+        }]
+      },
+      options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+        plugins:{legend:{display:false}}}
+    });
+    document.getElementById('mat-type-legend').innerHTML=MAT.map(function(m){
+      const pct=Math.round(m.vol/MAT.reduce(function(s,x){return s+x.vol;},0)*100);
+      return'<div style="display:flex;align-items:center;gap:7px;padding:2px 0;font-size:10px">'+
+        '<div style="width:8px;height:8px;border-radius:50%;background:'+m.col+';flex-shrink:0"></div>'+
+        '<span style="flex:1;color:var(--ink2)">'+m.icon+' '+m.name+'</span>'+
+        '<span style="font-family:\'DM Mono\',monospace;font-weight:600;color:'+m.col+'">'+pct+'%</span>'+
+      '</div>';
+    }).join('');
+  }
 }
 
 function buildClusterSummary(){
@@ -1795,7 +1827,7 @@ function buildOutboundTable(){
 }
 
 function buildWHCards(){
-  var icMap={CPC:'🏭',MRF:'♻',Retearn:'🔄',Warehouse:'🏗',Transit:'🚛'};
+  var icMap={CPC:'🏭',MRF:'🏭',Retearn:'🏭',Warehouse:'🏗',Transit:'🏭'};
   var OB={
     'GOA-CPC-001':{out:186,b:[['Hindustan Polymers','PET','#2563eb',82],['Goa Glass Recyclers','Glass','#16a34a',52],['South Goa Plastics','HDPE','#d97706',38],['GMWC','Mixed','#6b7280',14]]},
     'GOA-CPC-002':{out:264,b:[['Hindustan Polymers','PET','#2563eb',108],['EcoMLP Processors','MLP','#7c3aed',48],['Goa Glass Recyclers','Glass','#16a34a',72],['GMWC','Mixed','#6b7280',36]]},
@@ -1900,37 +1932,41 @@ function closeTruckModal(e){
 function p3Refresh(){}
 
 function buildBlockTable(){
-  const OBB={'GOA-CPC-001':186,'GOA-CPC-002':264,'GOA-CPC-003':124,'GOA-WH-001':62,'GOA-WH-002':28};
   const tbody=document.getElementById('block-tbody');
   if(!tbody)return;
-  tbody.innerHTML=CPCS.map(function(cpc){
-    const ps=PANCHS.filter(function(p){return p.cpc===cpc.id;});
-    const units=ps.reduce(function(s,p){return s+p.units;},0)||cpc.units_collected;
-    const mt=ps.reduce(function(s,p){return s+p.mt;},0)||cpc.inward;
-    const totalCPs=ps.reduce(function(s,p){return s+p.rvms+p.rc+p.d2d+p.hora;},0)||RVMS.filter(function(r){return r.cpc===cpc.id;}).length;
-    const avgFill=ps.length?Math.round(ps.reduce(function(s,p){return s+p.fill;},0)/ps.length):0;
-    const avgUp=ps.length?Math.round(ps.reduce(function(s,p){return s+p.up;},0)/ps.length):0;
-    const ob=OBB[cpc.id]||0;
-    const util=Math.round(cpc.veh.ontrip/cpc.veh.total*100);
+  // Group PANCHS by taluka
+  const talukas={};
+  PANCHS.forEach(function(p){
+    if(!talukas[p.t]) talukas[p.t]={name:p.t,col:TALUKAS[p.t]?.col||'#94a3b8',ps:[],units:0,mt:0,rvms:0,rc:0,d2d:0,hora:0,fills:[],ups:[]};
+    const tk=talukas[p.t];
+    tk.ps.push(p.n); tk.units+=p.units; tk.mt+=p.mt;
+    tk.rvms+=p.rvms; tk.rc+=p.rc; tk.d2d+=p.d2d; tk.hora+=p.hora;
+    tk.fills.push(p.fill); tk.ups.push(p.up);
+  });
+  const rows=Object.values(talukas).sort(function(a,b){return b.units-a.units;});
+  tbody.innerHTML=rows.map(function(tk){
+    const totalCPs=tk.rvms+tk.rc+tk.d2d+tk.hora;
+    const avgFill=Math.round(tk.fills.reduce(function(s,v){return s+v;},0)/tk.fills.length);
+    const avgUp=Math.round(tk.ups.reduce(function(s,v){return s+v;},0)/tk.ups.length);
     const ok=avgUp>=85;
-    return'<tr style="cursor:pointer" onclick="showPage(\'p2\',document.querySelectorAll(\'.ntab\')[1]);setTimeout(function(){p2Select(\''+cpc.id+'\');},350)">'+
-      '<td style="font-weight:700;display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:'+cpc.col+';flex-shrink:0;display:inline-block"></span>'+h(cpc.name)+'</td>'+
-      '<td><span class="tag tag-t" style="font-size:9px">'+h(cpc.type)+'</span></td>'+
-      '<td style="color:var(--ink3)">'+h(cpc.taluka)+'</td>'+
-      '<td class="tn">'+ps.length+'</td>'+
+    return'<tr style="cursor:default">'+
+      '<td style="font-weight:600"><div style="display:flex;align-items:center;gap:7px">'+
+        '<span style="width:9px;height:9px;border-radius:50%;background:'+tk.col+';flex-shrink:0;display:inline-block"></span>'+
+        h(tk.name)+'</div></td>'+
+      '<td class="tn">'+tk.ps.length+'</td>'+
       '<td class="tn tb">'+totalCPs+'</td>'+
-      '<td class="tn" style="font-weight:600;color:var(--blue)">'+fmt(units)+'</td>'+
-      '<td class="tn">'+mt+' MT</td>'+
-      '<td class="tn" style="color:var(--sky)">'+cpc.inward+' MT</td>'+
-      '<td class="tn tg">'+ob+' MT</td>'+
-      '<td class="tn" style="color:var(--amb)">'+cpc.pending_dispatch+' MT</td>'+
+      '<td class="tn" style="color:var(--blue);font-weight:600">'+fmt(tk.units)+'</td>'+
+      '<td class="tn">'+tk.mt+' MT</td>'+
+      '<td class="tn">'+tk.rvms+'</td>'+
+      '<td class="tn">'+tk.d2d+'</td>'+
+      '<td class="tn">'+tk.hora+'</td>'+
       '<td class="tn '+(avgFill>=70?'tg':avgFill>=50?'ta':'tr')+'">'+avgFill+'%</td>'+
       '<td class="tn '+(avgUp>=90?'tg':avgUp>=75?'ta':'tr')+'">'+avgUp+'%</td>'+
-      '<td class="tn">'+cpc.veh.ontrip+'/'+cpc.veh.total+'</td>'+
       '<td>'+(ok?'<span class="tag tag-g" style="font-size:9px">OK</span>':'<span class="tag tag-a" style="font-size:9px">Low</span>')+'</td>'+
     '</tr>';
   }).join('');
 }
+
 
 // ══════════════════════════════════════════════════════════
 // PAGE 3 CHARTS & RECON
