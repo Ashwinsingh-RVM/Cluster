@@ -472,7 +472,7 @@ table.dt tbody tr:last-child td{border-bottom:none}
   </div>
   <div class="pgbody" id="p1-body">
 
-    <!-- KPI Hero Strip -->
+    <!-- 5-card KPI Strip -->
     <div class="kpi-strip">
       <div class="kpi-cell" onclick="drillKPI('units')">
         <div class="kpi-accent" style="background:#3b82f6"></div>
@@ -491,8 +491,8 @@ table.dt tbody tr:last-child td{border-bottom:none}
       <div class="kpi-cell" onclick="drillKPI('cps')">
         <div class="kpi-accent" style="background:#7c3aed"></div>
         <div class="kpi-lbl">ACTIVE COLLECTION POINTS</div>
-        <div class="kpi-num" style="color:var(--purp)">300</div>
-        <div class="kpi-sub">RVM + RC + D2D + HoReCa</div>
+        <div class="kpi-num" style="color:var(--purp)">516</div>
+        <div class="kpi-sub">RVM(238)+RC(72)+D2D(104)+HoReCa(102)</div>
         <div class="kpi-tag kpi-grn">96.1% uptime</div>
       </div>
       <div class="kpi-cell" onclick="drillKPI('pickups')">
@@ -511,13 +511,13 @@ table.dt tbody tr:last-child td{border-bottom:none}
       </div>
     </div>
 
-    <!-- Cluster Pie + Collection Type Donut -->
+    <!-- Cluster Pie + Collection Type -->
     <div class="g7030">
       <div class="card">
         <div class="card-h"><div class="card-ht">Collection by CPC Cluster</div>
         <div class="card-hs">Units today per cluster — click row to navigate to map</div></div>
-        <div style="display:grid;grid-template-columns:180px 1fr;gap:12px;padding:12px 16px;align-items:center">
-          <div style="height:170px"><canvas id="ch-cluster-pie"></canvas></div>
+        <div style="display:grid;grid-template-columns:175px 1fr;gap:12px;padding:12px 16px;align-items:center">
+          <div style="height:165px"><canvas id="ch-cluster-pie"></canvas></div>
           <table class="dt" style="font-size:11px">
             <thead><tr><th>Cluster</th><th class="tn">Units</th><th class="tn">MT</th><th class="tn">CPs</th><th class="tn">Active</th><th class="tn">Fill%</th><th class="tn">Uptime</th></tr></thead>
             <tbody id="cluster-tbl-body"></tbody>
@@ -527,7 +527,7 @@ table.dt tbody tr:last-child td{border-bottom:none}
       <div class="card">
         <div class="card-h"><div class="card-ht">By Collection Type</div></div>
         <div style="display:flex;justify-content:center;padding:8px 0">
-          <canvas id="ch-cptype" style="max-height:155px;max-width:185px"></canvas>
+          <canvas id="ch-cptype" style="max-height:152px;max-width:182px"></canvas>
         </div>
         <div style="padding:4px 16px 12px" id="cptype-legend"></div>
       </div>
@@ -569,6 +569,27 @@ table.dt tbody tr:last-child td{border-bottom:none}
       </table>
     </div>
 
+    <!-- Block / CPC Cluster Summary -->
+    <div class="card">
+      <div class="card-h">
+        <div>
+          <div class="card-ht">Block-wise CPC Summary</div>
+          <div class="card-hs">Cluster-level rollup — click row to view on map</div>
+        </div>
+      </div>
+      <table class="dt" id="block-tbl">
+        <thead><tr>
+          <th>CPC / Block</th><th>Type</th><th>Taluka</th>
+          <th class="tn">Panchayats</th><th class="tn">Total CPs</th>
+          <th class="tn">Units Today</th><th class="tn">Weight MT</th>
+          <th class="tn">Inward MT</th><th class="tn">Outbound MT</th><th class="tn">Pending MT</th>
+          <th class="tn">Fill%</th><th class="tn">Uptime%</th>
+          <th class="tn">Fleet</th><th>Status</th>
+        </tr></thead>
+        <tbody id="block-tbody"></tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 
@@ -602,11 +623,11 @@ table.dt tbody tr:last-child td{border-bottom:none}
       <div class="sb-lbl">Select Cluster</div>
       <select class="sb-sel" id="p2-sel" onchange="p2Select(this.value)">
         <option value="all">All CPCs — Full Map</option>
-        <option value="GOA-CPC-001">Mapusa Collection Centre</option>
-        <option value="GOA-CPC-002">Margao MRF</option>
-        <option value="GOA-CPC-003">Panaji Retearn Centre</option>
-        <option value="GOA-WH-001">Mapusa Warehouse</option>
-        <option value="GOA-WH-002">Verna Transit Hub</option>
+        <option value="GOA-CPC-001">Sagar Industries</option>
+        <option value="GOA-CPC-002">M/s Goa Bottle Supplier</option>
+        <option value="GOA-CPC-003">Vilas Enterprise</option>
+        <option value="GOA-WH-001">Goa Bottle Washing Company</option>
+        <option value="GOA-WH-002">Durga Devi Enterprise</option>
       </select>
     </div>
     <!-- Fleet summary -->
@@ -655,11 +676,11 @@ table.dt tbody tr:last-child td{border-bottom:none}
     <div class="pgh-sp"></div>
     <select class="pgh-sel" id="p3-sel" onchange="p3Refresh()">
       <option value="all">All Warehouses</option>
-      <option value="GOA-CPC-001">Mapusa Collection Centre</option>
-      <option value="GOA-CPC-002">Margao MRF</option>
-      <option value="GOA-CPC-003">Panaji Retearn Centre</option>
-      <option value="GOA-WH-001">Mapusa Warehouse</option>
-      <option value="GOA-WH-002">Verna Transit Hub</option>
+      <option value="GOA-CPC-001">Sagar Industries</option>
+      <option value="GOA-CPC-002">M/s Goa Bottle Supplier</option>
+      <option value="GOA-CPC-003">Vilas Enterprise</option>
+      <option value="GOA-WH-001">Goa Bottle Washing Company</option>
+      <option value="GOA-WH-002">Durga Devi Enterprise</option>
     </select>
   </div>
   <div class="pgbody">
@@ -710,6 +731,23 @@ table.dt tbody tr:last-child td{border-bottom:none}
     <!-- WH Cards -->
     <div class="g3" id="wh-cards"></div>
 
+    <!-- Outbound by Buyer / Recycler — Aggregated -->
+    <div class="card">
+      <div class="card-h">
+        <div><div class="card-ht">Outbound by Buyer / Recycler — Today</div>
+        <div class="card-hs">Total outbound 924 MT · aggregated across all clusters</div></div>
+      </div>
+      <table class="dt" style="font-size:11px">
+        <thead><tr>
+          <th>Buyer / Recycler</th><th>Category</th>
+          <th class="tn">PET MT</th><th class="tn">Glass MT</th><th class="tn">HDPE MT</th>
+          <th class="tn">MLP MT</th><th class="tn">Alum MT</th><th class="tn">Tetrapak MT</th>
+          <th class="tn">Total MT</th><th class="tn">Trucks</th><th>Status</th>
+        </tr></thead>
+        <tbody id="outbound-buyer-tbody"></tbody>
+      </table>
+    </div>
+
     <!-- Outbound line-item table -->
     <div class="card">
       <div class="card-h">
@@ -727,14 +765,14 @@ table.dt tbody tr:last-child td{border-bottom:none}
 
     <!-- DOD Chart + Recon -->
     <div class="g2">
-      <div class="card">
-        <div class="card-h"><div class="card-ht">DOD Outbound vs Inbound (MT)</div>
-        <div class="card-hs">Last 14 days · buffer gap ≥ 100 MT</div></div>
-        <div class="cw cw200"><canvas id="ch-p3-dod"></canvas></div>
-      </div>
+
       <div class="card">
         <div class="card-h"><div class="card-ht">Weight Reconciliation</div></div>
         <div style="padding:14px 16px" id="recon-grid"></div>
+      </div>
+      <div class="card">
+        <div class="card-h"><div class="card-ht">DOD Outbound vs Inbound (MT)</div></div>
+        <div class="cw cw200"><canvas id="ch-p3-dod"></canvas></div>
       </div>
     </div>
 
@@ -794,26 +832,25 @@ const MAT=[
 ];
 
 const PANCHS=[
-  {n:'Aldona',    t:'Bardez',  rvms:6, rc:3,d2d:2,hora:1,units:2180,mt:76, fill:84,up:97,cpc:'GOA-CPC-001',mat:{pet:32,gls:18,hpe:14,mlp:6,alm:4,tp:2}},
-  {n:'Anjuna',    t:'Bardez',  rvms:5, rc:2,d2d:1,hora:2,units:2640,mt:92, fill:76,up:95,cpc:'GOA-CPC-001',mat:{pet:38,gls:22,hpe:18,mlp:8,alm:4,tp:2}},
-  {n:'Calangute', t:'Bardez',  rvms:7, rc:3,d2d:2,hora:3,units:3120,mt:109,fill:70,up:82,cpc:'GOA-CPC-001',mat:{pet:46,gls:26,hpe:20,mlp:10,alm:5,tp:2}},
-  {n:'Siolim',    t:'Bardez',  rvms:4, rc:2,d2d:1,hora:1,units:1840,mt:64, fill:74,up:97,cpc:'GOA-CPC-001',mat:{pet:26,gls:14,hpe:12,mlp:6,alm:4,tp:2}},
-  {n:'Mapusa',    t:'Bardez',  rvms:8, rc:4,d2d:3,hora:3,units:3920,mt:137,fill:88,up:99,cpc:'GOA-CPC-001',mat:{pet:56,gls:30,hpe:24,mlp:14,alm:8,tp:5}},
-  {n:'Panaji',    t:'Tiswadi', rvms:6, rc:3,d2d:2,hora:2,units:2840,mt:99, fill:80,up:93,cpc:'GOA-CPC-003',mat:{pet:40,gls:22,hpe:18,mlp:10,alm:6,tp:3}},
-  {n:'Dona Paula',t:'Tiswadi', rvms:4, rc:2,d2d:1,hora:1,units:1680,mt:59, fill:65,up:64,cpc:'GOA-CPC-003',mat:{pet:24,gls:12,hpe:10,mlp:6,alm:4,tp:3}},
-  {n:'Taleigao',  t:'Tiswadi', rvms:3, rc:2,d2d:1,hora:1,units:1420,mt:50, fill:72,up:96,cpc:'GOA-CPC-003',mat:{pet:20,gls:12,hpe:8, mlp:5,alm:3,tp:2}},
-  {n:'Ponda',     t:'Ponda',   rvms:5, rc:3,d2d:2,hora:1,units:2580,mt:90, fill:68,up:96,cpc:'GOA-CPC-003',mat:{pet:36,gls:20,hpe:16,mlp:8,alm:6,tp:4}},
-  {n:'Margao',    t:'Salcete', rvms:9, rc:5,d2d:3,hora:3,units:6120,mt:214,fill:81,up:98,cpc:'GOA-CPC-002',mat:{pet:88,gls:46,hpe:38,mlp:22,alm:14,tp:6}},
-  {n:'Colva',     t:'Salcete', rvms:3, rc:2,d2d:1,hora:1,units:1740,mt:61, fill:73,up:100,cpc:'GOA-CPC-002',mat:{pet:26,gls:14,hpe:10,mlp:6,alm:3,tp:2}},
-  {n:'Fatorda',   t:'Salcete', rvms:5, rc:3,d2d:2,hora:2,units:2360,mt:83, fill:78,up:97,cpc:'GOA-CPC-002',mat:{pet:34,gls:18,hpe:14,mlp:8,alm:6,tp:3}},
-  {n:'Vasco',     t:'Mormugao',rvms:7, rc:2,d2d:3,hora:2,units:4720,mt:165,fill:88,up:99,cpc:'GOA-WH-002',mat:{pet:68,gls:36,hpe:28,mlp:18,alm:10,tp:5}},
-  {n:'Dabolim',   t:'Mormugao',rvms:4, rc:1,d2d:2,hora:1,units:1880,mt:66, fill:74,up:94,cpc:'GOA-WH-002',mat:{pet:28,gls:14,hpe:12,mlp:6,alm:4,tp:2}},
-  {n:'Canacona',  t:'Canacona',rvms:3, rc:2,d2d:1,hora:1,units:1480,mt:52, fill:59,up:100,cpc:'GOA-CPC-002',mat:{pet:22,gls:12,hpe:8, mlp:5,alm:3,tp:2}},
-  {n:'Bicholim',  t:'Bicholim',rvms:5, rc:2,d2d:1,hora:1,units:2040,mt:71, fill:72,up:95,cpc:'GOA-WH-001',mat:{pet:30,gls:16,hpe:12,mlp:7,alm:4,tp:2}},
+  {n:'Aldona',    t:'Bardez',  rvms:15,rc:5, d2d:6, hora:6, units:2180,mt:76, fill:84,up:97, cpc:'GOA-CPC-001',mat:{pet:32,gls:18,hpe:14,mlp:6,alm:4,tp:2}},
+  {n:'Anjuna',    t:'Bardez',  rvms:14,rc:4, d2d:6, hora:7, units:2640,mt:92, fill:76,up:95, cpc:'GOA-CPC-001',mat:{pet:38,gls:22,hpe:18,mlp:8,alm:4,tp:2}},
+  {n:'Calangute', t:'Bardez',  rvms:20,rc:5, d2d:7, hora:7, units:3120,mt:109,fill:70,up:82, cpc:'GOA-CPC-001',mat:{pet:46,gls:28,hpe:20,mlp:10,alm:4,tp:2}},
+  {n:'Siolim',    t:'Bardez',  rvms:11,rc:4, d2d:5, hora:5, units:1840,mt:64, fill:74,up:97, cpc:'GOA-CPC-001',mat:{pet:26,gls:18,hpe:12,mlp:4,alm:2,tp:2}},
+  {n:'Mapusa',    t:'Bardez',  rvms:22,rc:6, d2d:8, hora:8, units:3920,mt:137,fill:88,up:99, cpc:'GOA-CPC-001',mat:{pet:56,gls:36,hpe:26,mlp:10,alm:6,tp:4}},
+  {n:'Panaji',    t:'Tiswadi', rvms:17,rc:5, d2d:7, hora:7, units:2840,mt:99, fill:80,up:93, cpc:'GOA-CPC-003',mat:{pet:40,gls:22,hpe:18,mlp:10,alm:6,tp:4}},
+  {n:'Dona Paula',t:'Tiswadi', rvms:11,rc:4, d2d:5, hora:5, units:1680,mt:59, fill:65,up:64, cpc:'GOA-CPC-003',mat:{pet:24,gls:14,hpe:12,mlp:4,alm:2,tp:4}},
+  {n:'Taleigao',  t:'Tiswadi', rvms:9, rc:3, d2d:5, hora:6, units:1420,mt:50, fill:72,up:96, cpc:'GOA-CPC-003',mat:{pet:20,gls:12,hpe:10,mlp:4,alm:2,tp:2}},
+  {n:'Ponda',     t:'Ponda',   rvms:14,rc:4, d2d:6, hora:6, units:2580,mt:90, fill:68,up:96, cpc:'GOA-CPC-003',mat:{pet:36,gls:20,hpe:16,mlp:8,alm:4,tp:6}},
+  {n:'Margao',    t:'Salcete', rvms:26,rc:9, d2d:12,hora:10,units:6120,mt:214,fill:81,up:98, cpc:'GOA-CPC-002',mat:{pet:88,gls:52,hpe:38,mlp:20,alm:10,tp:6}},
+  {n:'Colva',     t:'Salcete', rvms:9, rc:3, d2d:5, hora:6, units:1740,mt:61, fill:73,up:100,cpc:'GOA-CPC-002',mat:{pet:26,gls:14,hpe:10,mlp:6,alm:2,tp:4}},
+  {n:'Fatorda',   t:'Salcete', rvms:14,rc:4, d2d:6, hora:6, units:2360,mt:83, fill:78,up:97, cpc:'GOA-CPC-002',mat:{pet:34,gls:20,hpe:14,mlp:8,alm:4,tp:4}},
+  {n:'Vasco',     t:'Mormugao',rvms:20,rc:5, d2d:8, hora:7, units:4720,mt:165,fill:88,up:99, cpc:'GOA-WH-002',mat:{pet:68,gls:0, hpe:42,mlp:28,alm:14,tp:12}},
+  {n:'Dabolim',   t:'Mormugao',rvms:12,rc:4, d2d:6, hora:5, units:1880,mt:66, fill:74,up:94, cpc:'GOA-WH-002',mat:{pet:28,gls:0, hpe:18,mlp:12,alm:4,tp:4}},
+  {n:'Canacona',  t:'Canacona',rvms:9, rc:3, d2d:6, hora:6, units:1480,mt:52, fill:59,up:100,cpc:'GOA-CPC-002',mat:{pet:22,gls:12,hpe:8, mlp:6,alm:2,tp:2}},
+  {n:'Bicholim',  t:'Bicholim',rvms:15,rc:4, d2d:6, hora:5, units:2040,mt:71, fill:72,up:95, cpc:'GOA-WH-001',mat:{pet:30,gls:16,hpe:12,mlp:6,alm:4,tp:4}},
 ];
-
 const CPCS=[
-  {id:'GOA-CPC-001',name:'Mapusa Collection Centre',type:'CPC',taluka:'Bardez',
+  {id:'GOA-CPC-001',name:'Sagar Industries',type:'CPC',taluka:'Bardez',
    lat:15.5937,lng:73.8093,col:'#0ea5e9',
    veh:{total:20,ontrip:14,atcpc:6,util:70},
    pending_dispatch:186,units_collected:11280,inward:324,yield:87.4,dock:96,cap:500,
@@ -841,7 +878,7 @@ const CPCS=[
      {id:'TRK-M19',driver:'Rajesh Shet', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
      {id:'TRK-M20',driver:'Vinod Salvi', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
    ]},
-  {id:'GOA-CPC-002',name:'Margao MRF',type:'MRF',taluka:'Salcete',
+  {id:'GOA-CPC-002',name:'M/s Goa Bottle Supplier',type:'MRF',taluka:'Salcete',
    lat:15.2832,lng:73.9768,col:'#22c55e',
    veh:{total:25,ontrip:18,atcpc:7,util:72},
    pending_dispatch:228,units_collected:13890,inward:412,yield:89.6,dock:92,cap:1200,
@@ -874,7 +911,7 @@ const CPCS=[
      {id:'TRK-S24',driver:'Santosh P.',  cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
      {id:'TRK-S25',driver:'Pankaj Jdh.', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
    ]},
-  {id:'GOA-CPC-003',name:'Panaji Retearn Centre',type:'Retearn',taluka:'Tiswadi',
+  {id:'GOA-CPC-003',name:'Vilas Enterprise',type:'Retearn',taluka:'Tiswadi',
    lat:15.4989,lng:73.8278,col:'#f59e0b',
    veh:{total:15,ontrip:10,atcpc:5,util:67},
    pending_dispatch:104,units_collected:8640,inward:186,yield:86.2,dock:97,cap:200,
@@ -897,7 +934,7 @@ const CPCS=[
      {id:'TRK-P14',driver:'Naresh Wagh', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
      {id:'TRK-P15',driver:'Omkar Teke',  cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
    ]},
-  {id:'GOA-WH-001',name:'Mapusa Warehouse',type:'Warehouse',taluka:'Bicholim',
+  {id:'GOA-WH-001',name:'Goa Bottle Washing Company',type:'Warehouse',taluka:'Bicholim',
    lat:15.5880,lng:74.0130,col:'#a855f7',
    veh:{total:10,ontrip:6,atcpc:4,util:60},
    pending_dispatch:48,units_collected:4820,inward:84,yield:91.2,dock:98,cap:5000,
@@ -915,7 +952,7 @@ const CPCS=[
      {id:'TRK-W09',driver:'Xavier D.',   cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
      {id:'TRK-W10',driver:'Yogesh Jdh.', cp:'—',units:0,km:0,dur:'—',eta:'—',status:'at_cpc'},
    ]},
-  {id:'GOA-WH-002',name:'Verna Transit Hub',type:'Transit',taluka:'Mormugao',
+  {id:'GOA-WH-002',name:'Durga Devi Enterprise',type:'Transit',taluka:'Mormugao',
    lat:15.3458,lng:73.9318,col:'#f97316',
    veh:{total:10,ontrip:6,atcpc:4,util:60},
    pending_dispatch:22,units_collected:3890,inward:42,yield:85.8,dock:94,cap:2000,
@@ -935,14 +972,13 @@ const CPCS=[
    ]},
 ];
 
-// 300 RVMs — anchored to real panchayat coords, guaranteed inside Goa
+
+// RVMs anchored to real panchayat coords
 const RVMS=(()=>{
   const A={
-    Aldona:[15.6255,73.8208],Anjuna:[15.5685,73.7560],Calangute:[15.5441,73.7621],
-    Siolim:[15.6113,73.7840],Mapusa:[15.5937,73.8093],Colvale:[15.6450,73.8365],
-    Moira:[15.5948,73.8387],Nachinola:[15.6469,73.8378],Assagao:[15.5640,73.7741],
-    Assonora:[15.6185,73.9021],Revora:[15.6628,73.8469],Sirsaim:[15.6244,73.8798],
-    Pomburpa:[15.5615,73.8645],Camurlim:[15.6439,73.8018],Tivim:[15.5739,73.8661],
+    Aldona:[15.6255,73.8208],Anjuna:[15.5685,73.7560],Calangute:[15.5441,73.7621],Siolim:[15.6113,73.7840],
+    Mapusa:[15.5937,73.8093],Colvale:[15.6450,73.8365],Moira:[15.5948,73.8387],Nachinola:[15.6469,73.8378],
+    Assagao:[15.5640,73.7741],Assonora:[15.6185,73.9021],Revora:[15.6628,73.8469],Pomburpa:[15.5615,73.8645],
     Pernem:[15.7241,73.8000],Arambol:[15.6870,73.7400],Mandrem:[15.6580,73.7700],
     Panaji:[15.4989,73.8278],DonaPaula:[15.4590,73.8080],Carambolim:[15.4868,73.9312],
     Chimbel:[15.4959,73.8729],Agassaim:[15.4270,73.8984],Bambolim:[15.4660,73.8839],
@@ -956,30 +992,27 @@ const RVMS=(()=>{
     Canacona:[15.0200,74.0340],Palolem:[15.0100,74.0230],Agonda:[15.0504,73.9981],
     Vasco:[15.3960,73.8120],Dabolim:[15.3830,73.8580],Bogmalo:[15.3724,73.8260],
     Chicalim:[15.4087,73.8641],Sancoale:[15.3683,73.8924],Cortalim:[15.3800,73.9100],
-    Cansaulim:[15.3300,73.9050],Arossim:[15.3220,73.9120],Verna:[15.3458,73.9318],
-    Mormugao:[15.4050,73.8200],
+    Cansaulim:[15.3300,73.9050],Arossim:[15.3220,73.9120],Verna:[15.3458,73.9318],Mormugao:[15.4050,73.8200],
     Bicholim:[15.5880,73.9490],Sanquelim:[15.5570,74.0227],Latambarcem:[15.5486,73.9921],
     Maulinguem:[15.6161,73.9759],Naroa:[15.5486,73.9212],Cudnem:[15.5442,74.0132],
     Arvalem:[15.5645,74.0456],Valpoi:[15.5300,74.1340],Sattari:[15.5400,74.1100],
     Colem:[15.3365,74.2441],Dharbandora:[15.3918,74.1220],
   };
   const sd=(n)=>{let x=Math.sin(n*7919)*9999;return x-Math.floor(x)};
-  const mk=(pre,i,anchor,cpc,t,p)=>({
-    id:`${pre}-${String(i+1).padStart(3,'0')}`,p,t,cpc,
+  const mk=(pre,i,anchor,cpc,t,p)=>({id:`${pre}-${String(i+1).padStart(3,'0')}`,p,t,cpc,
     lat:parseFloat((anchor[0]+(sd(i*2)-.5)*.003).toFixed(4)),
-    lng:parseFloat((anchor[1]+(sd(i*3)-.5)*.003).toFixed(4))
-  });
+    lng:parseFloat((anchor[1]+(sd(i*3)-.5)*.003).toFixed(4))});
   const r=[];
-  const p1=[['Aldona','Bardez'],['Anjuna','Bardez'],['Calangute','Bardez'],['Siolim','Bardez'],['Mapusa','Bardez'],['Colvale','Bardez'],['Moira','Bardez'],['Nachinola','Bardez'],['Assagao','Bardez'],['Assonora','Bardez'],['Revora','Bardez'],['Sirsaim','Bardez'],['Pomburpa','Bardez'],['Camurlim','Bardez'],['Tivim','Bardez'],['Pernem','Pernem'],['Arambol','Pernem'],['Mandrem','Pernem']];
-  for(let i=0;i<80;i++){const[p,t]=p1[i%p1.length];r.push(mk('M',i,A[p],  'GOA-CPC-001',t,p));}
+  const p1=[['Aldona','Bardez'],['Anjuna','Bardez'],['Calangute','Bardez'],['Siolim','Bardez'],['Mapusa','Bardez'],['Colvale','Bardez'],['Moira','Bardez'],['Nachinola','Bardez'],['Assagao','Bardez'],['Assonora','Bardez'],['Revora','Bardez'],['Pomburpa','Bardez'],['Pernem','Pernem'],['Arambol','Pernem'],['Mandrem','Pernem']];
+  for(let i=0;i<80;i++){const[p,t]=p1[i%p1.length];r.push(mk('M',i,A[p],'GOA-CPC-001',t,p));}
   const p2=[['Margao','Salcete'],['Colva','Salcete'],['Fatorda','Salcete'],['Navelim','Salcete'],['Benaulim','Salcete'],['Curtorim','Salcete'],['Cuncolim','Salcete'],['Chandor','Salcete'],['Nuvem','Salcete'],['Loutolim','Salcete'],['Rachol','Salcete'],['Raia','Salcete'],['Quepem','Quepem'],['Cavelossim','Salcete'],['Canacona','Canacona'],['Palolem','Canacona'],['Agonda','Canacona']];
-  for(let i=0;i<90;i++){const[p,t]=p2[i%p2.length];r.push(mk('S',i,A[p],  'GOA-CPC-002',t,p));}
+  for(let i=0;i<90;i++){const[p,t]=p2[i%p2.length];r.push(mk('S',i,A[p],'GOA-CPC-002',t,p));}
   const p3=[['Panaji','Tiswadi'],['DonaPaula','Tiswadi'],['Carambolim','Tiswadi'],['Chimbel','Tiswadi'],['Agassaim','Tiswadi'],['Bambolim','Tiswadi'],['Taleigao','Tiswadi'],['Ponda','Ponda'],['Betora','Ponda'],['Priol','Ponda'],['Bandora','Ponda'],['Marcela','Ponda']];
-  for(let i=0;i<60;i++){const[p,t]=p3[i%p3.length];r.push(mk('T',i,A[p],  'GOA-CPC-003',t,p));}
+  for(let i=0;i<60;i++){const[p,t]=p3[i%p3.length];r.push(mk('T',i,A[p],'GOA-CPC-003',t,p));}
   const p4=[['Bicholim','Bicholim'],['Sanquelim','Bicholim'],['Latambarcem','Bicholim'],['Maulinguem','Bicholim'],['Naroa','Bicholim'],['Cudnem','Bicholim'],['Arvalem','Bicholim'],['Valpoi','Sattari'],['Sattari','Sattari'],['Colem','Dharbandora'],['Dharbandora','Dharbandora']];
-  for(let i=0;i<40;i++){const[p,t]=p4[i%p4.length];r.push(mk('W1',i,A[p], 'GOA-WH-001',t,p));}
+  for(let i=0;i<40;i++){const[p,t]=p4[i%p4.length];r.push(mk('W1',i,A[p],'GOA-WH-001',t,p));}
   const p5=[['Vasco','Mormugao'],['Dabolim','Mormugao'],['Bogmalo','Mormugao'],['Chicalim','Mormugao'],['Sancoale','Mormugao'],['Cortalim','Mormugao'],['Cansaulim','Mormugao'],['Arossim','Mormugao'],['Verna','Mormugao'],['Mormugao','Mormugao']];
-  for(let i=0;i<30;i++){const[p,t]=p5[i%p5.length];r.push(mk('V',i,A[p],  'GOA-WH-002',t,p));}
+  for(let i=0;i<30;i++){const[p,t]=p5[i%p5.length];r.push(mk('V',i,A[p],'GOA-WH-002',t,p));}
   return r;
 })();
 
@@ -1042,10 +1075,10 @@ function renderP1(){
 
 function buildCtypeCards(){
   const types=[
-    {key:'rvm',  label:'RVM Machines',    val:17150, total:29370, col:'#2563eb', cps:134, sub:'Automated reverse vending machines'},
-    {key:'rc',   label:'Retearn Centres', val:7200,  total:29370, col:'#16a34a', cps:62,  sub:'Manual sorting & redemption centres'},
-    {key:'d2d',  label:'D2D Pick-ups',    val:4800,  total:29370, col:'#d97706', cps:68,  sub:'Door-to-door collection routes'},
-    {key:'hora', label:'HoReCa',          val:1330,  total:29370, col:'#7c3aed', cps:36,  sub:'Hotels, restaurants & cafes'},
+    {key:'rvm',  label:'RVM Machines',    val:17150, total:29370, col:'#2563eb', cps:238, sub:'Automated reverse vending machines'},
+    {key:'rc',   label:'Retearn Centres', val:7200,  total:29370, col:'#16a34a', cps:72,  sub:'Manual sorting & redemption centres'},
+    {key:'d2d',  label:'D2D Pick-ups',    val:4800,  total:29370, col:'#d97706', cps:104,  sub:'Door-to-door collection routes'},
+    {key:'hora', label:'HoReCa',          val:1330,  total:29370, col:'#7c3aed', cps:101, sub:'Hotels, restaurants & cafes'},
   ];
   document.getElementById('ctype-cards').innerHTML=types.map(tp=>`
     <div class="ctype-card" style="border-top-color:${tp.col}" onclick="filterType('${tp.key}')">
@@ -1107,7 +1140,6 @@ function filterType(tp){
 // ══════════════════════════════════════════════════════════
 let chCPType,chClusterPie;
 function initP1Charts(){
-  // By Collection Type donut
   chCPType=new Chart(document.getElementById('ch-cptype').getContext('2d'),{
     type:'doughnut',
     data:{labels:['RVM','Retearn Centre','D2D','HoReCa'],
@@ -1133,7 +1165,7 @@ function buildClusterSummary(){
     const active=ps.filter(p=>p.up>=80).length;
     const avgFill=ps.length?Math.round(ps.reduce((s,p)=>s+p.fill,0)/ps.length):0;
     const avgUp=ps.length?Math.round(ps.reduce((s,p)=>s+p.up,0)/ps.length):0;
-    return{id:cpc.id,name:cpc.name.split(' ').slice(0,2).join(' '),col:cpc.col,units,mt,cps,active,inact:ps.length-active,avgFill,avgUp,util:cpc.veh.util};
+    return{id:cpc.id,name:cpc.name.split(' ').slice(0,2).join(' '),col:cpc.col,units,mt,cps,active,inact:ps.length-active,avgFill,avgUp};
   });
   const tbody=document.getElementById('cluster-tbl-body');
   if(tbody){
@@ -1142,12 +1174,10 @@ function buildClusterSummary(){
       <td><div style="display:flex;align-items:center;gap:7px">
         <span style="width:9px;height:9px;border-radius:50%;background:${d.col};flex-shrink:0;display:inline-block"></span>
         <div><b style="font-size:11px">${h(d.name)}</b>
-        <div style="height:3px;background:#f1f5f9;border-radius:2px;margin-top:3px;width:70px;overflow:hidden"><div style="height:100%;width:${Math.round(d.units/mx*100)}%;background:${d.col}"></div></div></div>
+        <div style="height:3px;background:#f1f5f9;border-radius:2px;margin-top:3px;width:60px;overflow:hidden"><div style="height:100%;width:${Math.round(d.units/mx*100)}%;background:${d.col}"></div></div></div>
       </div></td>
-      <td class="tn tb">${fmt(d.units)}</td>
-      <td class="tn">${d.mt} MT</td>
-      <td class="tn">${d.cps}</td>
-      <td class="tn tg">${d.active}</td>
+      <td class="tn tb">${fmt(d.units)}</td><td class="tn">${d.mt} MT</td>
+      <td class="tn">${d.cps}</td><td class="tn tg">${d.active}</td>
       <td class="tn ${d.avgFill>=70?'tg':d.avgFill>=50?'ta':'tr'}">${d.avgFill}%</td>
       <td class="tn ${d.avgUp>=90?'tg':d.avgUp>=75?'ta':'tr'}">${d.avgUp}%</td>
     </tr>`).join('');
@@ -1159,7 +1189,6 @@ function buildClusterSummary(){
       options:{responsive:true,maintainAspectRatio:false,cutout:'52%',plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:8,padding:4}}}}});
   }
 }
-
 
 // ══════════════════════════════════════════════════════════
 // DRILLDOWN
@@ -1174,12 +1203,10 @@ function drillKPI(metric){
   });
   cpRows.sort((a,b)=>b.u-a.u);
   const cfgs={
-    units:{title:'Units Collected — by CP',cols:['CP','Type','Panchayat','Taluka','Units','Uptime'],
-      rows:cpRows.map(r=>[r.n,r.type,r.pn,r.tal,fmt(r.u),r.up+'%'])},
-    weight:{title:'Weight (MT) — by CP',cols:['CP','Type','Panchayat','Taluka','Weight MT','Fill%'],
-      rows:cpRows.map(r=>[r.n,r.type,r.pn,r.tal,r.wt+' MT',r.fill+'%'])},
+    units:{title:'Units Collected — by CP',cols:['CP','Type','Panchayat','Taluka','Units','Uptime'],rows:cpRows.map(r=>[r.n,r.type,r.pn,r.tal,fmt(r.u),r.up+'%'])},
+    weight:{title:'Weight (MT) — by CP',cols:['CP','Type','Panchayat','Taluka','Weight MT','Fill%'],rows:cpRows.map(r=>[r.n,r.type,r.pn,r.tal,r.wt+' MT',r.fill+'%'])},
     cps:{title:'Active Collection Points — by Type',cols:['Type','CPs','Units','Share','Notes'],
-      rows:[['RVM','134','17,150','58%','Handler+No-Handler'],['Retearn Centre','62','7,200','25%','All-handler'],['D2D','68','4,800','16%','Handler+No-Handler'],['HoReCa','36','1,330','5%','Handler only']]},
+      rows:[['RVM Machines','238','17,150','46%','Automated reverse vending'],['Retearn Centres','72','7,200','14%','Manual sorting & redemption'],['D2D Pick-ups','104','4,800','20%','Door-to-door collection'],['HoReCa','102','1,330','20%','Hotels, restaurants & cafes']]},
     pickups:{title:'Pickups — by CPC',cols:['CPC','Trips','On-Time','Active Trucks','Total Fleet','KM/Trip'],
       rows:CPCS.map(c=>[c.name,c.ops.trips,c.ops.ontime+'%',c.veh.ontrip,c.veh.total,Math.round(c.ops.km/c.ops.trips)+' km'])},
     users:{title:'Users — by Panchayat',cols:['Panchayat','Taluka','Est.Users','Units','Users/CP','Uptime'],
@@ -1544,64 +1571,65 @@ function p2Select(id){
   }
 }
 
+
 function showCPModal(cpc){
-  const ps=PANCHS.filter(p=>p.cpc===cpc.id);
-  const rows=[];
-  ps.forEach(p=>{
-    for(let i=0;i<p.rvms;i++)  rows.push({n:p.n+' RVM-'+(i+1), type:'RVM',   pn:p.n,u:Math.round(p.units*.58/Math.max(p.rvms,1)),fill:p.fill,up:p.up});
-    for(let i=0;i<p.rc;i++)   rows.push({n:p.n+' RC-'+(i+1),  type:'RC',    pn:p.n,u:Math.round(p.units*.25/Math.max(p.rc,1)),  fill:Math.round(p.fill*.9),up:100});
-    for(let i=0;i<p.d2d;i++)  rows.push({n:p.n+' D2D-'+(i+1), type:'D2D',   pn:p.n,u:Math.round(p.units*.12/Math.max(p.d2d,1)), fill:Math.round(p.fill*.82),up:p.up});
-    for(let i=0;i<p.hora;i++) rows.push({n:p.n+' HRC-'+(i+1), type:'HoReCa',pn:p.n,u:Math.round(p.units*.05/Math.max(p.hora,1)),fill:Math.round(p.fill*.72),up:100});
+  var ps=PANCHS.filter(function(p){return p.cpc===cpc.id;});
+  var rows=[];var rN=1,rcN=1,dN=1,hN=1;
+  ps.forEach(function(p){
+    for(var i=0;i<p.rvms;i++)  rows.push({code:'RVM-'+String(rN++).padStart(3,'0'),type:'RVM',   loc:p.n,tal:p.t,u:Math.round(p.units*.58/Math.max(p.rvms,1)),  fill:Math.min(100,p.fill),up:p.up});
+    for(var i=0;i<p.rc;i++)   rows.push({code:'RC-'+String(rcN++).padStart(3,'0'), type:'RC',    loc:p.n,tal:p.t,u:Math.round(p.units*.25/Math.max(p.rc,1)),   fill:Math.min(100,Math.round(p.fill*.9)),up:100});
+    for(var i=0;i<p.d2d;i++)  rows.push({code:'D2D-'+String(dN++).padStart(3,'0'), type:'D2D',   loc:p.n,tal:p.t,u:Math.round(p.units*.12/Math.max(p.d2d,1)),  fill:Math.min(100,Math.round(p.fill*.82)),up:p.up});
+    for(var i=0;i<p.hora;i++) rows.push({code:'HRC-'+String(hN++).padStart(3,'0'), type:'HoReCa',loc:p.n,tal:p.t,u:Math.round(p.units*.05/Math.max(p.hora,1)), fill:Math.min(100,Math.round(p.fill*.72)),up:100});
   });
-  rows.sort((a,b)=>b.u-a.u);
-  const tc={RVM:'background:#dbeafe;color:#1d4ed8',RC:'background:#dcfce7;color:#15803d',D2D:'background:#fef3c7;color:#92400e',HoReCa:'background:#ede9fe;color:#5b21b6'};
-  _showModal(cpc.name+' — Collection Points ('+rows.length+')',
-    `<table class="dt" style="font-size:11px"><thead><tr><th>CP</th><th>Type</th><th>Panchayat</th><th class="tn">Units</th><th class="tn">Fill%</th><th class="tn">Uptime</th><th>Status</th></tr></thead><tbody>`+
-    rows.map(r=>`<tr><td style="font-weight:500">${h(r.n)}</td>
-      <td><span style="display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600;${tc[r.type]}">${r.type}</span></td>
-      <td>${h(r.pn)}</td><td class="tn tb">${fmt(r.u)}</td>
-      <td class="tn ${r.fill>=70?'tg':r.fill>=50?'ta':'tr'}">${Math.min(100,Math.max(0,r.fill))}%</td>
-      <td class="tn ${r.up>=90?'tg':r.up>=75?'ta':'tr'}">${r.up}%</td>
-      <td>${r.up>=80?'<span class="tag tag-g" style="font-size:9px">Active</span>':'<span class="tag tag-r" style="font-size:9px">Inactive</span>'}</td>
-    </tr>`).join('')+'</tbody></table>',
-    rows.filter(r=>r.up>=80).length+' active · '+rows.filter(r=>r.up<80).length+' inactive'
-  );
+  rows.sort(function(a,b){return b.u-a.u;});
+  var tc={RVM:'background:#dbeafe;color:#1d4ed8',RC:'background:#dcfce7;color:#15803d',D2D:'background:#fef3c7;color:#92400e',HoReCa:'background:#ede9fe;color:#5b21b6'};
+  var cm={RVM:'#1d4ed8',RC:'#15803d',D2D:'#92400e',HoReCa:'#5b21b6'};
+  var active=rows.filter(function(r){return r.up>=80;}).length;
+  _showModal(cpc.name+' — All Collection Points ('+rows.length+')',
+    '<table class="dt" style="font-size:11px"><thead><tr><th>CP Code</th><th>Type</th><th>Location</th><th>Taluka</th><th class="tn">Units</th><th class="tn">Fill%</th><th class="tn">Uptime</th><th>Status</th></tr></thead><tbody>'+
+    rows.map(function(r){var ok=r.up>=80;return'<tr>'+
+      '<td style="font-family:monospace;font-size:10px;font-weight:700;color:'+(cm[r.type]||'#374151')+'">'+h(r.code)+'</td>'+
+      '<td><span style="display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600;'+(tc[r.type]||'')+'">'+r.type+'</span></td>'+
+      '<td style="font-weight:500">'+h(r.loc)+'</td><td style="color:var(--ink3);font-size:10px">'+h(r.tal)+'</td>'+
+      '<td class="tn tb">'+fmt(r.u)+'</td>'+
+      '<td class="tn '+(r.fill>=70?'tg':r.fill>=50?'ta':'tr')+'">'+r.fill+'%</td>'+
+      '<td class="tn '+(r.up>=90?'tg':r.up>=75?'ta':'tr')+'">'+r.up+'%</td>'+
+      '<td>'+(ok?'<span class="tag tag-g" style="font-size:9px">Active</span>':'<span class="tag tag-r" style="font-size:9px">Inactive</span>')+'</td>'+
+    '</tr>';}).join('')+'</tbody></table>',
+    active+' active · '+(rows.length-active)+' inactive · '+rows.length+' total CPs');
 }
 
 function showFleetModal(cpcId,filter){
-  const cpc=CPCS.find(c=>c.id===cpcId);if(!cpc)return;
-  const trucks=filter==='all'?cpc.trucks:cpc.trucks.filter(t=>t.status===filter);
-  const titles={all:'All Trucks',on_trip:'Trucks On Trip',at_cpc:'Trucks At CPC'};
+  var cpc=CPCS.find(function(c){return c.id===cpcId;});if(!cpc)return;
+  var trucks=filter==='all'?cpc.trucks:cpc.trucks.filter(function(t){return t.status===filter;});
+  var titles={all:'All Trucks',on_trip:'Trucks On Trip',at_cpc:'Trucks At CPC'};
   _showModal(cpc.name+' — '+(titles[filter]||'Trucks')+' ('+trucks.length+')',
-    `<table class="dt" style="font-size:11px"><thead><tr><th>Truck</th><th>Driver</th><th>Status</th><th>CP</th><th class="tn">Units</th><th class="tn">KM</th><th class="tn">Duration</th><th class="tn">ETA</th></tr></thead><tbody>`+
-    trucks.map(t=>`<tr style="cursor:pointer" onclick="_closeModal();openTruckModal('${esc(cpcId)}','${esc(t.id)}')">
-      <td style="font-weight:600;color:${cpc.col}">${t.id}</td>
-      <td>${h(t.driver)}</td>
-      <td>${t.status==='on_trip'?'<span class="tag tag-g" style="font-size:9px">On Trip</span>':'<span class="tag tag-a" style="font-size:9px">At CPC</span>'}</td>
-      <td>${h(t.cp)}</td><td class="tn tb">${t.units?fmt(t.units):'—'}</td>
-      <td class="tn">${t.km?t.km+' km':'—'}</td><td class="tn">${t.dur}</td><td class="tn">${t.eta}</td>
-    </tr>`).join('')+'</tbody></table>',
-    'Click row for full truck detail'
-  );
+    '<table class="dt" style="font-size:11px"><thead><tr><th>Truck</th><th>Driver</th><th>Status</th><th>CP</th><th class="tn">Units</th><th class="tn">KM</th><th class="tn">Duration</th><th class="tn">ETA</th></tr></thead><tbody>'+
+    trucks.map(function(t){return'<tr style="cursor:pointer" onclick="_closeModal();openTruckModal(\''+esc(cpcId)+'\',\''+esc(t.id)+'\')">'+
+      '<td style="font-weight:600;color:'+cpc.col+'">'+t.id+'</td>'+
+      '<td>'+h(t.driver)+'</td>'+
+      '<td>'+(t.status==='on_trip'?'<span class="tag tag-g" style="font-size:9px">On Trip</span>':'<span class="tag tag-a" style="font-size:9px">At CPC</span>')+'</td>'+
+      '<td>'+h(t.cp)+'</td><td class="tn tb">'+(t.units?fmt(t.units):'—')+'</td>'+
+      '<td class="tn">'+(t.km?t.km+' km':'—')+'</td><td class="tn">'+t.dur+'</td><td class="tn">'+t.eta+'</td>'+
+    '</tr>';}).join('')+'</tbody></table>',
+    'Click row for full truck detail');
 }
 
 function _showModal(title,bodyHtml,subtitle){
-  let ov=document.getElementById('_gModal');
+  var ov=document.getElementById('_gModal');
   if(!ov){ov=document.createElement('div');ov.id='_gModal';
     ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:3000;display:none;align-items:center;justify-content:center';
-    ov.addEventListener('click',e=>{if(e.target===ov)_closeModal();});
+    ov.addEventListener('click',function(e){if(e.target===ov)_closeModal();});
     document.body.appendChild(ov);}
-  ov.innerHTML=`<div style="background:#fff;border-radius:12px;width:860px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.25)" onclick="event.stopPropagation()">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e8ebf0;flex-shrink:0">
-      <div><div style="font-size:15px;font-weight:700;color:#1a1d23">${h(title)}</div>
-      ${subtitle?`<div style="font-size:11px;color:#6b7280;margin-top:2px">${h(subtitle)}</div>`:''}</div>
-      <div onclick="_closeModal()" style="width:28px;height:28px;border-radius:7px;border:1px solid #e8ebf0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:#6b7280;flex-shrink:0">✕</div>
-    </div>
-    <div style="overflow-y:auto;flex:1">${bodyHtml}</div>
-  </div>`;
+  ov.innerHTML='<div style="background:#fff;border-radius:12px;width:860px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.25)" onclick="event.stopPropagation()">'+
+    '<div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #e8ebf0;flex-shrink:0">'+
+    '<div><div style="font-size:15px;font-weight:700;color:#1a1d23">'+h(title)+'</div>'+
+    (subtitle?'<div style="font-size:11px;color:#6b7280;margin-top:2px">'+h(subtitle)+'</div>':'')+
+    '</div><div onclick="_closeModal()" style="width:28px;height:28px;border-radius:7px;border:1px solid #e8ebf0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:#6b7280;flex-shrink:0">&#10005;</div></div>'+
+    '<div style="overflow-y:auto;flex:1">'+bodyHtml+'</div></div>';
   ov.style.display='flex';
 }
-function _closeModal(){const ov=document.getElementById('_gModal');if(ov)ov.style.display='none';}
+function _closeModal(){var ov=document.getElementById('_gModal');if(ov)ov.style.display='none';}
 
 function renderP2Detail(cpc){
   if(!cpc)return;
@@ -1609,70 +1637,206 @@ function renderP2Detail(cpc){
   document.getElementById('p2-empty').style.display='none';
   const det=document.getElementById('p2-detail');
   det.style.display='flex';
-  const onTrip=cpc.trucks.filter(t=>t.status==='on_trip');
-  const atCPC=cpc.trucks.filter(t=>t.status==='at_cpc');
   const vUtil=Math.round(cpc.veh.ontrip/cpc.veh.total*100);
   const ps=PANCHS.filter(p=>p.cpc===cpc.id);
   const avgFill=ps.length?Math.round(ps.reduce((s,p)=>s+p.fill,0)/ps.length):0;
   const avgUp=ps.length?Math.round(ps.reduce((s,p)=>s+p.up,0)/ps.length):0;
-  const actPs=ps.filter(p=>p.up>=80);
-  const inPs=ps.filter(p=>p.up<80);
-  det.innerHTML=`
-    <div class="dp-head" style="border-left-color:${cpc.col}">
-      <div class="dp-title">${h(cpc.name)}</div>
-      <div class="dp-sub">${h(cpc.taluka)} · ${h(cpc.type)}</div>
-    </div>
-    <div class="dp-kpis">
-      <div class="dp-kpi"><div class="dp-kv" style="color:var(--blue)">${fmt(cpc.units_collected)}</div><div class="dp-kl">Units Collected</div></div>
-      <div class="dp-kpi"><div class="dp-kv" style="color:var(--sky)">${myRVMs.length}</div><div class="dp-kl">Collection Points</div></div>
-      <div class="dp-kpi"><div class="dp-kv ${avgFill>=70?'tg':avgFill>=50?'ta':'tr'}">${avgFill}%</div><div class="dp-kl">CP Utilisation</div></div>
-      <div class="dp-kpi"><div class="dp-kv ${avgUp>=90?'tg':avgUp>=75?'ta':'tr'}">${avgUp}%</div><div class="dp-kl">CP Uptime</div></div>
-    </div>
-    <div class="dp-sec">
-      <div class="dp-sec-title" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="showCPModal(${JSON.stringify({id:cpc.id}).replace(/"/g,'&quot;')})">
-        <span>Collection Points (${myRVMs.length} · ${actPs.length} active · ${inPs.length} inactive)</span>
-        <span style="font-size:10px;color:var(--blue)">View all →</span>
-      </div>
-      <div style="max-height:160px;overflow-y:auto;margin:0 -16px">
-        <table class="dt" style="font-size:11px">
-          <thead><tr><th>Panchayat</th><th class="tn">CPs</th><th class="tn">Units</th><th class="tn">Fill%</th><th class="tn">Uptime</th><th>Status</th></tr></thead>
-          <tbody>${ps.map(p=>{const tot=p.rvms+p.rc+p.d2d+p.hora;const ok=p.up>=80;return`<tr>
-            <td style="font-weight:500">${h(p.n)}</td><td class="tn">${tot}</td>
-            <td class="tn tb">${fmt(p.units)}</td>
-            <td class="tn ${p.fill>=70?'tg':p.fill>=50?'ta':'tr'}">${p.fill}%</td>
-            <td class="tn ${p.up>=90?'tg':p.up>=75?'ta':'tr'}">${p.up}%</td>
-            <td>${ok?'<span class="tag tag-g" style="font-size:9px">Active</span>':'<span class="tag tag-r" style="font-size:9px">Inactive</span>'}</td>
-          </tr>`;}).join('')}</tbody>
-        </table>
-      </div>
-    </div>
-    <div class="dp-sec">
-      <div class="dp-sec-title">Vehicle Fleet — click to see trucks</div>
-      <div class="veh-stat-row">
-        <div class="veh-stat" style="cursor:pointer" onclick="showFleetModal('${cpc.id}','all')"><div class="veh-stat-v grn">${cpc.veh.total}</div><div class="veh-stat-l">Total</div></div>
-        <div class="veh-stat" style="cursor:pointer" onclick="showFleetModal('${cpc.id}','on_trip')"><div class="veh-stat-v" style="color:var(--blue)">${cpc.veh.ontrip}</div><div class="veh-stat-l">On Trip</div></div>
-        <div class="veh-stat" style="cursor:pointer" onclick="showFleetModal('${cpc.id}','at_cpc')"><div class="veh-stat-v amb">${cpc.veh.atcpc}</div><div class="veh-stat-l">At CPC</div></div>
-        <div class="veh-stat" style="cursor:pointer" onclick="showFleetModal('${cpc.id}','all')"><div class="veh-stat-v" style="color:var(--ink2)">${vUtil}%</div><div class="veh-stat-l">Utilisation</div></div>
-      </div>
-    </div>
-    <div class="dp-sec">
-      <div class="dp-sec-title">Material Inward (MT)</div>
-      ${MAT.map(m=>{const v=cpc.mat[m.id]||0;const mx=Math.max(...Object.values(cpc.mat));return`<div class="dp-row">
-        <span class="dp-k" style="display:flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:${m.col};flex-shrink:0;display:inline-block"></span>${m.name}</span>
-        <div style="display:flex;align-items:center;gap:6px">
-          <div style="width:50px;height:3px;background:var(--bdr);border-radius:2px;overflow:hidden"><div style="height:100%;width:${Math.round(v/mx*100)}%;background:${m.col}"></div></div>
-          <span class="dp-v">${v} MT</span>
-        </div>
-      </div>`;}).join('')}
-    </div>
-    <div class="dp-sec">
-      <div class="dp-sec-title">Operations</div>
-      ${[['Trips Today',cpc.ops.trips],['On-Time %',cpc.ops.ontime+'%'],['Total KM',cpc.ops.km+' km'],['Sort Accuracy',cpc.ops.sort_acc+'%'],['Idle Hours',cpc.ops.idle+'h'],['Pending Dispatch',cpc.pending_dispatch+' MT']].map(([k,v])=>`<div class="dp-row"><span class="dp-k">${k}</span><span class="dp-v">${v}</span></div>`).join('')}
-    </div>
-    <div style="padding:12px 16px">
-      <button onclick="showPage('p3',document.querySelectorAll('.ntab')[2])" style="width:100%;padding:8px;background:var(--bg);color:var(--ink2);border:1px solid var(--bdr);border-radius:6px;font-size:12px;font-weight:500;cursor:pointer">🏗 View Warehouse Detail</button>
-    </div>`;
+  const actPs=ps.filter(p=>p.up>=80);const inPs=ps.filter(p=>p.up<80);
+  // Build inline CP list (top 15 by units)
+  const cpList=[];let rN=1,rcN=1,dN=1,hN=1;
+  const tc2={RVM:'background:#dbeafe;color:#1d4ed8',RC:'background:#dcfce7;color:#15803d',D2D:'background:#fef3c7;color:#92400e',HoReCa:'background:#ede9fe;color:#5b21b6'};
+  const cm2={RVM:'#1d4ed8',RC:'#15803d',D2D:'#92400e',HoReCa:'#5b21b6'};
+  ps.forEach(p=>{
+    for(let i=0;i<p.rvms;i++)  cpList.push({code:'RVM-'+String(rN++).padStart(3,'0'),type:'RVM',   loc:p.n,u:Math.round(p.units*.58/Math.max(p.rvms,1)), fill:Math.min(100,p.fill),up:p.up});
+    for(let i=0;i<p.rc;i++)   cpList.push({code:'RC-'+String(rcN++).padStart(3,'0'), type:'RC',    loc:p.n,u:Math.round(p.units*.25/Math.max(p.rc,1)),  fill:Math.min(100,Math.round(p.fill*.9)),up:100});
+    for(let i=0;i<p.d2d;i++)  cpList.push({code:'D2D-'+String(dN++).padStart(3,'0'), type:'D2D',   loc:p.n,u:Math.round(p.units*.12/Math.max(p.d2d,1)), fill:Math.min(100,Math.round(p.fill*.82)),up:p.up});
+    for(let i=0;i<p.hora;i++) cpList.push({code:'HRC-'+String(hN++).padStart(3,'0'), type:'HoReCa',loc:p.n,u:Math.round(p.units*.05/Math.max(p.hora,1)),fill:Math.min(100,Math.round(p.fill*.72)),up:100});
+  });
+  const cpRows=cpList.sort((a,b)=>b.u-a.u).map(r=>{
+    const ok=r.up>=80;
+    return'<tr>'+
+      '<td style="font-family:monospace;font-size:10px;font-weight:700;color:'+(cm2[r.type]||'#374151')+'">'+r.code+'</td>'+
+      '<td><span style="display:inline-block;padding:1px 4px;border-radius:3px;font-size:9px;font-weight:600;'+(tc2[r.type]||'')+'">'+r.type+'</span></td>'+
+      '<td style="font-size:10px">'+r.loc+'</td>'+
+      '<td class="tn tb">'+fmt(r.u)+'</td>'+
+      '<td class="tn '+(r.fill>=70?'tg':r.fill>=50?'ta':'tr')+'">'+r.fill+'%</td>'+
+      '<td class="tn '+(r.up>=90?'tg':r.up>=75?'ta':'tr')+'">'+r.up+'%</td>'+
+      '<td>'+(ok?'<span class="tag tag-g" style="font-size:9px">Active</span>':'<span class="tag tag-r" style="font-size:9px">Inactive</span>')+'</td>'+
+    '</tr>';}).join('');
+
+  det.innerHTML=
+    '<div class="dp-head" style="border-left-color:'+cpc.col+'">'+
+      '<div class="dp-title">'+h(cpc.name)+'</div>'+
+      '<div class="dp-sub">'+h(cpc.taluka)+' \xb7 '+h(cpc.type)+'</div>'+
+    '</div>'+
+    '<div class="dp-kpis">'+
+      '<div class="dp-kpi"><div class="dp-kv" style="color:var(--blue)">'+fmt(cpc.units_collected)+'</div><div class="dp-kl">Units Collected</div></div>'+
+      '<div class="dp-kpi"><div class="dp-kv" style="color:var(--sky)">'+myRVMs.length+'</div><div class="dp-kl">Collection Points</div></div>'+
+      '<div class="dp-kpi"><div class="dp-kv '+(avgFill>=70?'tg':avgFill>=50?'ta':'tr')+'">'+avgFill+'%</div><div class="dp-kl">CP Utilisation</div></div>'+
+      '<div class="dp-kpi"><div class="dp-kv '+(avgUp>=90?'tg':avgUp>=75?'ta':'tr')+'">'+avgUp+'%</div><div class="dp-kl">CP Uptime</div></div>'+
+    '</div>'+
+    '<div class="dp-sec">'+
+      '<div class="dp-sec-title" style="display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="showCPModal(CPCS.find(function(x){return x.id===\''+esc(cpc.id)+'\';}))">'+
+        '<span>Collection Points ('+myRVMs.length+' \xb7 '+actPs.length+' active \xb7 '+inPs.length+' inactive)</span>'+
+        '<span style="font-size:10px;color:var(--blue)">View all \u2192</span>'+
+      '</div>'+
+      '<div style="max-height:160px;overflow-y:auto;margin:0 -16px">'+
+        '<table class="dt" style="font-size:11px"><thead><tr>'+
+          '<th>CP Code</th><th>Type</th><th>Location</th><th class="tn">Units</th><th class="tn">Fill%</th><th class="tn">Uptime</th><th>Status</th>'+
+        '</tr></thead><tbody>'+cpRows+'</tbody></table>'+
+      '</div>'+
+    '</div>'+
+    '<div class="dp-sec">'+
+      '<div class="dp-sec-title">Vehicle Fleet \u2014 click to see trucks</div>'+
+      '<div class="veh-stat-row">'+
+        '<div class="veh-stat" style="cursor:pointer" onclick="showFleetModal(\''+esc(cpc.id)+'\',\'all\')"><div class="veh-stat-v grn">'+cpc.veh.total+'</div><div class="veh-stat-l">Total</div></div>'+
+        '<div class="veh-stat" style="cursor:pointer" onclick="showFleetModal(\''+esc(cpc.id)+'\',\'on_trip\')"><div class="veh-stat-v" style="color:var(--blue)">'+cpc.veh.ontrip+'</div><div class="veh-stat-l">On Trip</div></div>'+
+        '<div class="veh-stat" style="cursor:pointer" onclick="showFleetModal(\''+esc(cpc.id)+'\',\'at_cpc\')"><div class="veh-stat-v amb">'+cpc.veh.atcpc+'</div><div class="veh-stat-l">At CPC</div></div>'+
+        '<div class="veh-stat" style="cursor:pointer" onclick="showFleetModal(\''+esc(cpc.id)+'\',\'all\')"><div class="veh-stat-v" style="color:var(--ink2)">'+vUtil+'%</div><div class="veh-stat-l">Utilisation</div></div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="dp-sec">'+
+      '<div class="dp-sec-title">Material Inward (MT)</div>'+
+      MAT.map(function(m){var v=cpc.mat[m.id]||0;var mx=Math.max.apply(null,Object.values(cpc.mat));return'<div class="dp-row"><span class="dp-k" style="display:flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:'+m.col+';flex-shrink:0;display:inline-block"></span>'+m.name+'</span><div style="display:flex;align-items:center;gap:6px"><div style="width:50px;height:3px;background:var(--bdr);border-radius:2px;overflow:hidden"><div style="height:100%;width:'+Math.round(v/mx*100)+'%;background:'+m.col+'"></div></div><span class="dp-v">'+v+' MT</span></div></div>';}).join('')+
+    '</div>'+
+    '<div class="dp-sec">'+
+      '<div class="dp-sec-title">Operations</div>'+
+      [['Trips Today',cpc.ops.trips],['On-Time %',cpc.ops.ontime+'%'],['Total KM',cpc.ops.km+' km'],['Sort Accuracy',cpc.ops.sort_acc+'%'],['Idle Hours',cpc.ops.idle+'h'],['Pending Dispatch',cpc.pending_dispatch+' MT']].map(function(kv){return'<div class="dp-row"><span class="dp-k">'+kv[0]+'</span><span class="dp-v">'+kv[1]+'</span></div>';}).join('')+
+    '</div>'+
+    '<div style="padding:12px 16px"><button onclick="showPage(\'p3\',document.querySelectorAll(\'.ntab\')[2])" style="width:100%;padding:8px;background:var(--bg);color:var(--ink2);border:1px solid var(--bdr);border-radius:6px;font-size:12px;font-weight:500;cursor:pointer">\uD83C\uDFD7 View Warehouse Detail</button></div>';
 }
+
+function drillWH(metric){
+  var allTrucks=[];
+  CPCS.forEach(function(cpc){cpc.trucks.forEach(function(t){allTrucks.push({id:t.id,driver:t.driver,cp:t.cp,status:t.status,units:t.units,km:t.km,dur:t.dur,eta:t.eta,cpcName:cpc.name,col:cpc.col,inward:cpc.inward,pending:cpc.pending_dispatch,yld:cpc.yield,dock:cpc.dock});});});
+  var cfgs={
+    inbound:{title:'DRS Inbound — by CPC',cols:['CPC','Inward MT','Yield','Dock','Capacity','On Trip'],rows:CPCS.map(function(c){return[c.name,c.inward+' MT',c.yield+'%',c.dock+'%',c.inward+'/'+c.cap+' MT',c.veh.ontrip+'/'+c.veh.total];})},
+    outbound:{title:'On-Trip Trucks (Outbound)',cols:['Truck','Driver','CPC','CP','Units','KM','Duration','ETA'],rows:allTrucks.filter(function(t){return t.status==='on_trip';}).map(function(t){return[t.id,t.driver,t.cpcName,t.cp,t.units?fmt(t.units):'—',t.km||'—',t.dur,t.eta];})},
+    pending:{title:'Pending Dispatch — by CPC',cols:['CPC','Pending MT','Inward MT','%Pending','At CPC'],rows:CPCS.map(function(c){return[c.name,c.pending_dispatch+' MT',c.inward+' MT',Math.round(c.pending_dispatch/c.inward*100)+'%',c.veh.atcpc];})},
+    inventory:{title:'Inventory — by CPC',cols:['CPC','Inward MT','Pending MT','Yield','Cap MT','Fill%'],rows:CPCS.map(function(c){return[c.name,c.inward+' MT',c.pending_dispatch+' MT',c.yield+'%',c.cap+' MT',Math.round(c.inward/c.cap*100)+'%'];})},
+    dock:{title:'All Trucks — Dock View',cols:['Truck','Driver','CPC','CP','Units','Duration','ETA','Status'],rows:allTrucks.map(function(t){return[t.id,t.driver,t.cpcName,t.cp,t.units?fmt(t.units):'—',t.dur,t.eta,t.status==='on_trip'?'On Trip':'At CPC'];})},
+    vehicles:{title:'Full Fleet View',cols:['Truck','Driver','CPC','CP','Units','KM','Duration','ETA','Status'],rows:allTrucks.map(function(t){return[t.id,t.driver,t.cpcName,t.cp,t.units?fmt(t.units):'—',t.km||'—',t.dur,t.eta,t.status==='on_trip'?'On Trip':'At CPC'];})}
+  };
+  var cfg=cfgs[metric];if(!cfg)return;
+  var stCss={'On Trip':'background:#dcfce7;color:#15803d','At CPC':'background:#fef3c7;color:#92400e'};
+  var rowsHtml=cfg.rows.map(function(row){return'<tr>'+row.map(function(cell,ci){var cs=String(cell);if(stCss[cs])return'<td><span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:600;'+stCss[cs]+'">'+cs+'</span></td>';return'<td class="'+(ci===0?'':'tn')+'">'+h(cs)+'</td>';}).join('')+'</tr>';}).join('');
+  _showModal(cfg.title,'<table class="dt" style="font-size:11px"><thead><tr>'+cfg.cols.map(function(col){return'<th>'+h(col)+'</th>';}).join('')+'</tr></thead><tbody>'+rowsHtml+'</tbody></table>',cfg.rows.length+' records');
+}
+
+function buildOutboundBuyerTable(){
+  const buyers=[
+    {name:'Hindustan Polymers Ltd', cat:'Recycler',  pet:310,gls:0,  hpe:0,  mlp:0,  alm:0, tp:0,  trucks:14,status:'Active'},
+    {name:'Goa Glass Recyclers',    cat:'Recycler',  pet:0,  gls:146,hpe:0,  mlp:0,  alm:0, tp:0,  trucks:6, status:'Active'},
+    {name:'South Goa Plastics',     cat:'Recycler',  pet:160,gls:0,  hpe:144,mlp:0,  alm:0, tp:0,  trucks:11,status:'Active'},
+    {name:'EcoMLP Processors',      cat:'Recycler',  pet:0,  gls:0,  hpe:0,  mlp:48, alm:0, tp:0,  trucks:2, status:'Active'},
+    {name:'North Goa Recyclers',    cat:'Recycler',  pet:0,  gls:0,  hpe:42, mlp:0,  alm:0, tp:0,  trucks:3, status:'Active'},
+    {name:'Aluminium Melt Pvt',     cat:'Recycler',  pet:0,  gls:0,  hpe:0,  mlp:0,  alm:26,tp:0,  trucks:2, status:'Active'},
+    {name:'Tetrapak Recovery India',cat:'Brand',     pet:0,  gls:0,  hpe:0,  mlp:0,  alm:0, tp:8,  trucks:1, status:'Active'},
+    {name:'GMWC',                   cat:'GMWC',      pet:0,  gls:0,  hpe:0,  mlp:0,  alm:0, tp:0,  trucks:4, status:'Active'},
+  ];
+  // GMWC gets all mixed/residual
+  buyers[7].pet=14;buyers[7].gls=36;buyers[7].hpe=0;buyers[7].mlp=0;buyers[7].alm=0;
+  const el=document.getElementById('outbound-buyer-tbody');
+  if(!el)return;
+  const catCol={Recycler:'tag-b',GMWC:'tag-g',Brand:'tag-p'};
+  el.innerHTML=buyers.map(function(b){
+    const tot=b.pet+b.gls+b.hpe+b.mlp+b.alm+b.tp;
+    return'<tr>'+
+      '<td style="font-weight:600">'+h(b.name)+'</td>'+
+      '<td><span class="tag '+(catCol[b.cat]||'tag-t')+'" style="font-size:9px">'+b.cat+'</span></td>'+
+      '<td class="tn '+(b.pet?'tb':'')+'">'+( b.pet?b.pet+' MT':'—')+'</td>'+
+      '<td class="tn '+(b.gls?'tg':'')+'">'+( b.gls?b.gls+' MT':'—')+'</td>'+
+      '<td class="tn '+(b.hpe?'ta':'')+'">'+( b.hpe?b.hpe+' MT':'—')+'</td>'+
+      '<td class="tn '+(b.mlp?'':'' )+'">'+( b.mlp?b.mlp+' MT':'—')+'</td>'+
+      '<td class="tn '+(b.alm?'tsk':'')+'">'+( b.alm?b.alm+' MT':'—')+'</td>'+
+      '<td class="tn '+(b.tp ?'':'' )+'">'+( b.tp ?b.tp +' MT':'—')+'</td>'+
+      '<td class="tn tb" style="font-weight:700">'+tot+' MT</td>'+
+      '<td class="tn">'+b.trucks+'</td>'+
+      '<td><span class="tag tag-g" style="font-size:9px">Dispatched</span></td>'+
+    '</tr>';
+  }).join('');
+}
+
+function buildOutboundTable(){
+  var rows=[
+    {cpc:'Sagar Industries',   buyer:'Hindustan Polymers',  mat:'PET Bottles',  col:'#2563eb',wt:188,trucks:6,status:'Delivered', time:'08:30'},
+    {cpc:'M/s Goa Bottle',     buyer:'Goa Glass Recyclers', mat:'Glass Bottles', col:'#16a34a',wt:94, trucks:3,status:'In Transit',time:'09:15'},
+    {cpc:'Vilas Enterprise',   buyer:'South Goa Plastics',  mat:'HDPE Plastics', col:'#d97706',wt:82, trucks:3,status:'Delivered', time:'07:45'},
+    {cpc:'M/s Goa Bottle',     buyer:'EcoMLP Processors',   mat:'MLP Flexible',  col:'#7c3aed',wt:48, trucks:2,status:'Delivered', time:'10:00'},
+    {cpc:'Sagar Industries',   buyer:'Aluminium Melt Pvt',  mat:'Aluminium',     col:'#0891b2',wt:14, trucks:1,status:'In Transit',time:'11:20'},
+    {cpc:'Durga Devi Ent.',    buyer:'Tetrapak Recovery',   mat:'Tetrapak',      col:'#db2877',wt:8,  trucks:1,status:'Delivered', time:'06:30'},
+    {cpc:'Vilas Enterprise',   buyer:'Hindustan Polymers',  mat:'PET Bottles',   col:'#2563eb',wt:142,trucks:5,status:'Delivered', time:'07:00'},
+    {cpc:'Goa Bottle Was.',    buyer:'North Goa Recyclers', mat:'HDPE Plastics', col:'#d97706',wt:72, trucks:3,status:'In Transit',time:'12:10'},
+    {cpc:'M/s Goa Bottle',     buyer:'GMWC',                mat:'Mixed',         col:'#6b7280',wt:36, trucks:2,status:'Loading',   time:'—'},
+    {cpc:'Sagar Industries',   buyer:'Hindustan Polymers',  mat:'PET Bottles',   col:'#2563eb',wt:78, trucks:3,status:'Loading',   time:'—'},
+    {cpc:'Durga Devi Ent.',    buyer:'South Goa Plastics',  mat:'PET Bottles',   col:'#2563eb',wt:18, trucks:1,status:'Delivered', time:'08:00'},
+    {cpc:'Goa Bottle Was.',    buyer:'GMWC',                mat:'Mixed',         col:'#6b7280',wt:44, trucks:2,status:'In Transit',time:'13:00'},
+  ];
+  var el=document.getElementById('outbound-tbl-body');if(!el)return;
+  var sc={Delivered:'tag-g','In Transit':'tag-b',Loading:'tag-a'};
+  el.innerHTML=rows.map(function(r,i){return'<tr>'+
+    '<td style="color:var(--ink3)">'+(i+1)+'</td>'+
+    '<td style="font-weight:500">'+h(r.cpc)+'</td>'+
+    '<td>'+h(r.buyer)+'</td>'+
+    '<td><span style="display:inline-flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:'+r.col+'"></span>'+h(r.mat)+'</span></td>'+
+    '<td class="tn tb">'+r.wt+' MT</td>'+
+    '<td class="tn">'+r.trucks+'</td>'+
+    '<td><span class="tag '+(sc[r.status]||'tag-a')+'" style="font-size:9px">'+r.status+'</span></td>'+
+    '<td style="color:var(--ink3);font-size:11px">'+r.time+'</td>'+
+  '</tr>';}).join('');
+}
+
+function buildWHCards(){
+  var icMap={CPC:'🏭',MRF:'♻',Retearn:'🔄',Warehouse:'🏗',Transit:'🚛'};
+  var OB={
+    'GOA-CPC-001':{out:186,b:[['Hindustan Polymers','PET','#2563eb',82],['Goa Glass Recyclers','Glass','#16a34a',52],['South Goa Plastics','HDPE','#d97706',38],['GMWC','Mixed','#6b7280',14]]},
+    'GOA-CPC-002':{out:264,b:[['Hindustan Polymers','PET','#2563eb',108],['EcoMLP Processors','MLP','#7c3aed',48],['Goa Glass Recyclers','Glass','#16a34a',72],['GMWC','Mixed','#6b7280',36]]},
+    'GOA-CPC-003':{out:124,b:[['South Goa Plastics','HDPE','#d97706',62],['Hindustan Polymers','PET','#2563eb',38],['GMWC','Mixed','#6b7280',24]]},
+    'GOA-WH-001': {out:62, b:[['North Goa Recyclers','Mixed','#0891b2',42],['GMWC','Mixed','#6b7280',20]]},
+    'GOA-WH-002': {out:28, b:[['Tetrapak Recovery','Tetrapak','#db2877',8],['Aluminium Melt','Aluminium','#0891b2',12],['GMWC','Mixed','#6b7280',8]]},
+  };
+  document.getElementById('wh-cards').innerHTML=CPCS.map(function(cpc){
+    var util=Math.round(cpc.veh.ontrip/cpc.veh.total*100);
+    var capPct=Math.min(100,Math.round(cpc.inward/cpc.cap*100));
+    var ob=OB[cpc.id]||{out:0,b:[]};
+    var bRows=ob.b.map(function(b){return'<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #f3f4f6;font-size:10px">'+
+      '<div style="display:flex;align-items:center;gap:5px;flex:1;min-width:0;overflow:hidden">'+
+        '<span style="width:6px;height:6px;border-radius:50%;background:'+b[2]+';flex-shrink:0;display:inline-block"></span>'+
+        '<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#3d4351">'+h(b[0])+'</span>'+
+        '<span style="color:#9ca3af;font-size:9px;flex-shrink:0"> '+b[1]+'</span>'+
+      '</div>'+
+      '<span style="font-weight:600;color:#16a34a;font-family:\'DM Mono\',monospace;flex-shrink:0;margin-left:6px">'+b[3]+' MT</span>'+
+    '</div>';}).join('');
+    return'<div class="wh-card">'+
+      '<div class="wh-card-head">'+
+        '<div class="wh-icon" style="background:'+cpc.col+'18"><span>'+(icMap[cpc.type]||'🏭')+'</span></div>'+
+        '<div style="flex:1;min-width:0">'+
+          '<div style="font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+h(cpc.name)+'</div>'+
+          '<div style="font-size:10px;color:var(--ink3);margin-top:2px">'+h(cpc.taluka)+' \xb7 <span class="tag tag-t" style="font-size:9px">'+h(cpc.type)+'</span></div>'+
+        '</div>'+
+      '</div>'+
+      '<div class="wh-card-body">'+
+        '<div class="wh-row"><span class="wh-k">Inward Today</span><span class="wh-v" style="color:var(--blue)">'+cpc.inward+' MT</span></div>'+
+        '<div class="wh-row"><span class="wh-k">Outbound Today</span><span class="wh-v tg">'+ob.out+' MT</span></div>'+
+        '<div class="wh-row"><span class="wh-k">Pending Dispatch</span><span class="wh-v" style="color:var(--amb)">'+cpc.pending_dispatch+' MT</span></div>'+
+        '<div class="wh-row"><span class="wh-k">Yield</span><span class="wh-v '+(cpc.yield>=88?'tg':'ta')+'">'+cpc.yield+'%</span></div>'+
+        '<div class="wh-row"><span class="wh-k">Dock Clearance</span><span class="wh-v '+(cpc.dock>=96?'tg':cpc.dock>=92?'ta':'tr')+'">'+cpc.dock+'%</span></div>'+
+        '<div class="wh-row"><span class="wh-k">Vehicle Utilisation</span><span class="wh-v '+(util>=70?'tg':util>=55?'ta':'tr')+'">'+util+'%</span></div>'+
+        '<div class="wh-row"><span class="wh-k">Fleet (Trip/Total)</span><span class="wh-v">'+cpc.veh.ontrip+' / '+cpc.veh.total+'</span></div>'+
+        '<div class="cap-bar">'+
+          '<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3)"><span>Capacity Used</span><span>'+cpc.inward+' / '+cpc.cap+' MT</span></div>'+
+          '<div class="cap-track"><div class="cap-fill" style="width:'+capPct+'%;background:'+cpc.col+'"></div></div>'+
+        '</div>'+
+        '<div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--bdr)">'+
+          '<div style="font-size:9px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px">Outbound by Buyer / Recycler</div>'+
+          bRows+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  }).join('');
+}
+
+function p3Refresh(){}
 
 // ── Truck modal ──
 function openTruckModal(cpcId, truckId){
@@ -1724,150 +1888,40 @@ function closeTruckModal(e){
 // ══════════════════════════════════════════════════════════
 // PAGE 3 — WAREHOUSE
 // ══════════════════════════════════════════════════════════
-function buildWHCards(){
-  const icMap={CPC:'🏭',MRF:'♻',Retearn:'🔄',Warehouse:'🏗',Transit:'🚛'};
-  document.getElementById('wh-cards').innerHTML=CPCS.map(cpc=>{
-    const util=Math.round(cpc.veh.ontrip/cpc.veh.total*100);
-    const capPct=Math.min(100,Math.round(cpc.inward/cpc.cap*100));
-    return`<div class="wh-card">
-      <div class="wh-card-head">
-        <div class="wh-icon" style="background:${cpc.col}18"><span>${icMap[cpc.type]||'🏭'}</span></div>
-        <div style="flex:1;min-width:0">
-          <div style="font-size:12px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${h(cpc.name)}</div>
-          <div style="font-size:10px;color:var(--ink3);margin-top:2px">${h(cpc.taluka)} · <span class="tag tag-t" style="font-size:9px">${h(cpc.type)}</span></div>
-        </div>
-      </div>
-      <div class="wh-card-body">
-        <div class="wh-row"><span class="wh-k">Inward Today</span><span class="wh-v" style="color:var(--blue)">${cpc.inward} MT</span></div>
-        <div class="wh-row"><span class="wh-k">Pending Dispatch</span><span class="wh-v" style="color:var(--amb)">${cpc.pending_dispatch} MT</span></div>
-        <div class="wh-row"><span class="wh-k">Yield</span><span class="wh-v ${cpc.yield>=88?'tg':'ta'}">${cpc.yield}%</span></div>
-        <div class="wh-row"><span class="wh-k">Dock Clearance</span><span class="wh-v ${cpc.dock>=96?'tg':cpc.dock>=92?'ta':'tr'}">${cpc.dock}%</span></div>
-        <div class="wh-row"><span class="wh-k">Vehicle Utilisation</span><span class="wh-v ${util>=70?'tg':util>=55?'ta':'tr'}">${util}%</span></div>
-        <div class="wh-row"><span class="wh-k">Fleet (On Trip / Total)</span><span class="wh-v">${cpc.veh.ontrip} / ${cpc.veh.total}</span></div>
-        <div class="cap-bar">
-          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--ink3)">
-            <span>Capacity Used</span><span>${cpc.inward} / ${cpc.cap} MT</span>
-          </div>
-          <div class="cap-track"><div class="cap-fill" style="width:${capPct}%;background:${cpc.col}"></div></div>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function buildReconGrid(){
-  const items=[
-    {icon:'⚖',v:'4.8%',l:'Weight Recon — Planned vs Actual',ok:false},
-    {icon:'🚛',v:'0.7%',l:'In-Transit Loss Rate',ok:false},
-    {icon:'↔', v:'1.8%',l:'Inbound vs Outbound Recon',ok:true},
-    {icon:'✅',v:'91%', l:'Double Count Completion',ok:false},
-    {icon:'⏱',v:'18h', l:'HF Processing TAT',ok:true},
-    {icon:'📷',v:'1.4%',l:'Unscannable QR Rate',ok:false},
-  ];
-  document.getElementById('recon-grid').innerHTML=`<div class="recon-grid">
-    ${items.map(i=>`<div class="recon-card" style="border-left:3px solid ${i.ok?'var(--grn)':'var(--red)'}">
-      <span class="recon-icon">${i.icon}</span>
-      <div><div class="recon-v" style="color:${i.ok?'var(--grn)':'var(--red)'}">${i.v}</div>
-        <div class="recon-l">${i.l}</div></div>
-    </div>`).join('')}
-  </div>`;
-}
-
-let chP3DOD,chP3Mat,chP3Veh;
-function initP3Charts(){
-  const DAYS=['Apr 9','Apr 10','Apr 11','Apr 12','Apr 13','Apr 14','Apr 15','Apr 16'];
-  chP3DOD=new Chart(document.getElementById('ch-p3-dod').getContext('2d'),{
-    type:'line',
-    data:{labels:DAYS,datasets:[
-      {label:'Outbound MT',data:[780,810,756,838,795,822,808,834,798,856,820,848,826,924],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.08)',fill:true,tension:.4,pointRadius:3,borderWidth:2},
-      {label:'Inbound MT', data:[920,960,892,978,938,968,948,978,940,1008,958,998,978,1048],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.06)',fill:true,tension:.4,pointRadius:3,borderWidth:2},
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{font:{size:10},boxWidth:10}}},
-      scales:{y:{grid:{color:'#f1f5f9'},ticks:{font:{size:10}},beginAtZero:false},x:{ticks:{font:{size:9}}}}},
-  })
-
-  chP3Mat=new Chart(document.getElementById('ch-p3-mat').getContext('2d'),{
-    type:'bar',
-    data:{
-      labels:MAT.map(m=>m.name),
-      datasets:CPCS.map(cpc=>({
-        label:cpc.name.split(' ')[0],
-        data:MAT.map(m=>cpc.mat[m.id]||0),
-        backgroundColor:cpc.col+'cc',borderRadius:2,
-      }))
-    },
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{font:{size:9},boxWidth:7}}},
-      scales:{x:{stacked:true,ticks:{font:{size:9}}},y:{stacked:true,grid:{color:'#f1f5f9'},ticks:{font:{size:9}}}}},
-  });
-
-  chP3Veh=new Chart(document.getElementById('ch-p3-veh').getContext('2d'),{
-    type:'bar',
-    data:{
-      labels:CPCS.map(c=>c.name.split(' ')[0]),
-      datasets:[
-        {label:'On Trip',data:CPCS.map(c=>c.veh.ontrip),backgroundColor:'#3b82f6cc',borderRadius:3},
-        {label:'At CPC', data:CPCS.map(c=>c.veh.atcpc), backgroundColor:'#f59e0bcc',borderRadius:3},
-      ]
-    },
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{font:{size:10},boxWidth:8}}},
-      scales:{x:{stacked:true,ticks:{font:{size:9}}},y:{stacked:true,grid:{color:'#f1f5f9'},ticks:{font:{size:9}}}}},
-  });
-}
 
 function p3Refresh(){}
 
-function buildOutboundTable(){
-  const rows=[
-    {cpc:'Margao MRF',buyer:'Hindustan Polymers Ltd',mat:'PET Bottles',col:'#2563eb',wt:188,trucks:6,status:'Delivered',time:'08:30'},
-    {cpc:'Mapusa Centre',buyer:'Goa Glass Recyclers',mat:'Glass Bottles',col:'#16a34a',wt:88,trucks:3,status:'In Transit',time:'09:15'},
-    {cpc:'Panaji Retearn',buyer:'South Goa Plastics',mat:'HDPE Plastics',col:'#d97706',wt:82,trucks:3,status:'Delivered',time:'07:45'},
-    {cpc:'Margao MRF',buyer:'EcoMLP Processors',mat:'MLP Flexible',col:'#7c3aed',wt:38,trucks:2,status:'Delivered',time:'10:00'},
-    {cpc:'Mapusa Centre',buyer:'Aluminium Melt Pvt',mat:'Aluminium Cans',col:'#0891b2',wt:14,trucks:1,status:'In Transit',time:'11:20'},
-    {cpc:'Verna Transit',buyer:'Tetrapak Recovery India',mat:'Tetrapak',col:'#db2877',wt:8,trucks:1,status:'Delivered',time:'06:30'},
-    {cpc:'Panaji Retearn',buyer:'South Goa Plastics',mat:'PET Bottles',col:'#2563eb',wt:142,trucks:5,status:'Delivered',time:'07:00'},
-    {cpc:'Bicholim WH',buyer:'North Goa Recyclers',mat:'HDPE Plastics',col:'#d97706',wt:72,trucks:3,status:'In Transit',time:'12:10'},
-    {cpc:'Margao MRF',buyer:'Goa Glass Recyclers',mat:'Glass Bottles',col:'#16a34a',wt:94,trucks:3,status:'Loading',time:'—'},
-    {cpc:'Mapusa Centre',buyer:'Hindustan Polymers',mat:'PET Bottles',col:'#2563eb',wt:78,trucks:3,status:'Loading',time:'—'},
-    {cpc:'Verna Transit',buyer:'South Goa Plastics',mat:'PET Bottles',col:'#2563eb',wt:18,trucks:1,status:'Delivered',time:'08:00'},
-    {cpc:'Bicholim WH',buyer:'North Goa Recyclers',mat:'PET Bottles',col:'#2563eb',wt:22,trucks:1,status:'In Transit',time:'13:00'},
-  ];
-  const el=document.getElementById('outbound-tbl-body');
-  if(!el)return;
-  const sc={Delivered:'tag-g','In Transit':'tag-b',Loading:'tag-a'};
-  el.innerHTML=rows.map((r,i)=>`<tr>
-    <td style="color:var(--ink3)">${i+1}</td>
-    <td style="font-weight:500">${h(r.cpc)}</td>
-    <td>${h(r.buyer)}</td>
-    <td><span style="display:inline-flex;align-items:center;gap:4px"><span style="width:7px;height:7px;border-radius:50%;background:${r.col}"></span>${h(r.mat)}</span></td>
-    <td class="tn tb">${r.wt} MT</td>
-    <td class="tn">${r.trucks}</td>
-    <td><span class="tag ${sc[r.status]||'tag-a'}" style="font-size:9px">${r.status}</span></td>
-    <td style="color:var(--ink3);font-size:11px">${r.time}</td>
-  </tr>`).join('');
-}
-
-function drillWH(metric){
-  const allTrucks=[];
-  CPCS.forEach(cpc=>cpc.trucks.forEach(t=>allTrucks.push({...t,cpcName:cpc.name,cpcId:cpc.id,col:cpc.col,inward:cpc.inward,pending:cpc.pending_dispatch,yld:cpc.yield,dock:cpc.dock})));
-  const cfgs={
-    inbound:{title:'DRS Inbound — by CPC',cols:['CPC','Inward MT','Yield','Dock','Capacity','On Trip'],rows:CPCS.map(c=>[c.name,c.inward+' MT',c.yield+'%',c.dock+'%',c.inward+'/'+c.cap+' MT',c.veh.ontrip+'/'+c.veh.total])},
-    outbound:{title:'On-Trip Trucks (Outbound)',cols:['Truck','Driver','CPC','CP','Units','KM','Duration','ETA'],rows:allTrucks.filter(t=>t.status==='on_trip').map(t=>[t.id,t.driver,t.cpcName,t.cp,t.units?fmt(t.units):'—',t.km||'—',t.dur,t.eta])},
-    pending:{title:'Pending Dispatch — by CPC',cols:['CPC','Pending MT','Inward MT','%Pending','At CPC'],rows:CPCS.map(c=>[c.name,c.pending_dispatch+' MT',c.inward+' MT',Math.round(c.pending_dispatch/c.inward*100)+'%',c.veh.atcpc])},
-    inventory:{title:'Inventory — by CPC',cols:['CPC','Inward MT','Pending MT','Yield','Cap MT','Fill%'],rows:CPCS.map(c=>[c.name,c.inward+' MT',c.pending_dispatch+' MT',c.yield+'%',c.cap+' MT',Math.round(c.inward/c.cap*100)+'%'])},
-    dock:{title:'All Trucks — Dock View',cols:['Truck','Driver','CPC','CP','Units','Duration','ETA','Status'],rows:allTrucks.map(t=>[t.id,t.driver,t.cpcName,t.cp,t.units?fmt(t.units):'—',t.dur,t.eta,t.status==='on_trip'?'On Trip':'At CPC'])},
-    vehicles:{title:'Full Fleet View',cols:['Truck','Driver','CPC','CP','Units','KM','Duration','ETA','Status'],rows:allTrucks.map(t=>[t.id,t.driver,t.cpcName,t.cp,t.units?fmt(t.units):'—',t.km||'—',t.dur,t.eta,t.status==='on_trip'?'On Trip':'At CPC'])}
-  };
-  const cfg=cfgs[metric];if(!cfg)return;
-  const stCss={'On Trip':'background:#dcfce7;color:#15803d','At CPC':'background:#fef3c7;color:#92400e'};
-  const rowsHtml=cfg.rows.map(row=>'<tr>'+row.map((cell,ci)=>{
-    const cs=String(cell);
-    if(stCss[cs]) return`<td><span style="display:inline-block;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:600;${stCss[cs]}">${cs}</span></td>`;
-    return`<td class="${ci===0?'':'tn'}">${h(cs)}</td>`;
-  }).join('')+'</tr>').join('');
-  _showModal(cfg.title,`<table class="dt" style="font-size:11px"><thead><tr>${cfg.cols.map(col=>`<th>${h(col)}</th>`).join('')}</tr></thead><tbody>${rowsHtml}</tbody></table>`,cfg.rows.length+' records');
+function buildBlockTable(){
+  const OBB={'GOA-CPC-001':186,'GOA-CPC-002':264,'GOA-CPC-003':124,'GOA-WH-001':62,'GOA-WH-002':28};
+  const tbody=document.getElementById('block-tbody');
+  if(!tbody)return;
+  tbody.innerHTML=CPCS.map(function(cpc){
+    const ps=PANCHS.filter(function(p){return p.cpc===cpc.id;});
+    const units=ps.reduce(function(s,p){return s+p.units;},0)||cpc.units_collected;
+    const mt=ps.reduce(function(s,p){return s+p.mt;},0)||cpc.inward;
+    const totalCPs=ps.reduce(function(s,p){return s+p.rvms+p.rc+p.d2d+p.hora;},0)||RVMS.filter(function(r){return r.cpc===cpc.id;}).length;
+    const avgFill=ps.length?Math.round(ps.reduce(function(s,p){return s+p.fill;},0)/ps.length):0;
+    const avgUp=ps.length?Math.round(ps.reduce(function(s,p){return s+p.up;},0)/ps.length):0;
+    const ob=OBB[cpc.id]||0;
+    const util=Math.round(cpc.veh.ontrip/cpc.veh.total*100);
+    const ok=avgUp>=85;
+    return'<tr style="cursor:pointer" onclick="showPage(\'p2\',document.querySelectorAll(\'.ntab\')[1]);setTimeout(function(){p2Select(\''+cpc.id+'\');},350)">'+
+      '<td style="font-weight:700;display:flex;align-items:center;gap:7px"><span style="width:9px;height:9px;border-radius:50%;background:'+cpc.col+';flex-shrink:0;display:inline-block"></span>'+h(cpc.name)+'</td>'+
+      '<td><span class="tag tag-t" style="font-size:9px">'+h(cpc.type)+'</span></td>'+
+      '<td style="color:var(--ink3)">'+h(cpc.taluka)+'</td>'+
+      '<td class="tn">'+ps.length+'</td>'+
+      '<td class="tn tb">'+totalCPs+'</td>'+
+      '<td class="tn" style="font-weight:600;color:var(--blue)">'+fmt(units)+'</td>'+
+      '<td class="tn">'+mt+' MT</td>'+
+      '<td class="tn" style="color:var(--sky)">'+cpc.inward+' MT</td>'+
+      '<td class="tn tg">'+ob+' MT</td>'+
+      '<td class="tn" style="color:var(--amb)">'+cpc.pending_dispatch+' MT</td>'+
+      '<td class="tn '+(avgFill>=70?'tg':avgFill>=50?'ta':'tr')+'">'+avgFill+'%</td>'+
+      '<td class="tn '+(avgUp>=90?'tg':avgUp>=75?'ta':'tr')+'">'+avgUp+'%</td>'+
+      '<td class="tn">'+cpc.veh.ontrip+'/'+cpc.veh.total+'</td>'+
+      '<td>'+(ok?'<span class="tag tag-g" style="font-size:9px">OK</span>':'<span class="tag tag-a" style="font-size:9px">Low</span>')+'</td>'+
+    '</tr>';
+  }).join('');
 }
 
 // ══════════════════════════════════════════════════════════
@@ -1876,10 +1930,12 @@ function drillWH(metric){
 (()=>{
   buildTree();
   renderP1();
+  buildBlockTable();
   initP1Charts();
   buildClusterSummary();
   buildWHCards();
   buildReconGrid();
+  buildOutboundBuyerTable();
   buildOutboundTable();
   setTimeout(initP3Charts,150);
 })();
